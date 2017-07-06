@@ -1,0 +1,41 @@
+{ 
+	"dataExists": {
+		"error_type": "application",
+		"error_tag": "data-exists",
+		"error_severity": "error",
+		"error_info": { "err_element": "customer" },
+		"error_message" : "Request could not be completed because the relevant data model content already exists."
+	},
+	"errorTags":{
+		"unknown-namespace": 400,
+		"malformed-message": 400,
+		"too-big": 400,
+		"invalid-value": 400,
+		"missing-attribute": 400,
+		"bad-attribute": 400,
+		"unknown-attribute": 400,
+		"missing-element": 400,
+		"bad-element": 400,
+		"unknown-element": 400,
+		"lock-denied": 403,
+		"resource-denied": 403,
+		"access-denied": 403,
+		"data-missing": 404,
+		"in-use": 409,
+		"operation-not-supported": 415,
+		"rollback-failed": 500,
+		"operation-failed": 500,
+		"default-tag-case":520
+	},
+	"randomError":{
+		"index": 0,
+		"guid": "b75db42a-b715-4a4f-bf8d-174ea079dc2a",
+		"isActive": false,
+		"balance": "$1,785.56",
+		"picture": "http://placehold.it/32x32",
+		"age": 30,
+		"eyeColor": "brown",
+		"name": "Adeline Sweeney",
+		"gender": "female"
+	}
+}

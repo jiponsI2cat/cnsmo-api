@@ -1,0 +1,7 @@
+node_modules
+dist
+.tmp
+config/env/development.js
+test/acceptances/config/env/development.js
+npm-debug.log*
+public/coverage

@@ -1,0 +1,32 @@
+{
+  "newDomain": {
+    "ID": null,
+    "description": " ",
+    "globalRoutingEnabled": null,
+    "leakingEnabled": null,
+    "name": "a",
+    "templateID": "ecb55154-13c5-4ddc-8ae9-660477975721"
+  },
+  "beginJob": {
+    "command": "BEGIN_POLICY_CHANGES"
+  },
+  "invalidJob": {
+    "command9999": "BEGIN_POLICY_CHANGES"
+  },
+  "invalidDomain": {
+    "ID": null,
+    "description": "More than 60 chars in name",
+    "globalRoutingEnabled": null,
+    "leakingEnabled": null,
+    "name": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+    "templateID": "ecb55154-13c5-4ddc-8ae9-660477975721"
+  },
+  "globalDomain": {
+    "ID": null,
+    "description": "description",
+    "globalRoutingEnabled": null,
+    "leakingEnabled": null,
+    "name": "Z-Acceptance Global VPRN",
+    "templateID": "ecb55154-13c5-4ddc-8ae9-660477975721"
+  }
+}

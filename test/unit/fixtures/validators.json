@@ -1,0 +1,23 @@
+{
+	"domainL3Valid":{
+		"name": "dssssssssssss",
+		"templateID" : "84fae42e-17da-419b-8256-73233c193b6d"
+	},
+	"domainL3InvalidLengthName":{
+		"name": "dssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+		"templateID" : "84fae42e-17da-419b-8256-73233c193b6d"
+	},
+	"enterpriseValid": {
+		"description":"description",
+		"id":null,
+		"name":"Z-Acceptance Test Enterprise",
+		"profile":""
+	},
+	"enterpriseInvalid": {
+		"description":"description",
+		"id":null,
+		"name":"Z-Acceptance Tesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssst Enterprise",
+		"profile":""
+	}
+}
+

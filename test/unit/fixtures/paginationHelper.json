@@ -1,0 +1,27 @@
+{  
+   "paginationOK":{  
+      "headers":{  
+         "host":"localhost:8083",
+         "connection":"keep-alive",
+         "accept":"application/json, text/plain, */*",
+         "origin":"http://localhost:4200",
+         "user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36",
+         "content-type":"application/json",
+         "referer":"http://localhost:4200/enterprises",
+         "accept-encoding":"gzip, deflate, sdch",
+         "accept-language":"en-US,en;q=0.8,es;q=0.6",
+         "if-none-match":"W44de-4dlV8IyiU4rTLbT9HCSqYQ",
+         "X-Nuage-Organization":"CSP",
+         "Authorization":"XREST Y3Nwcm9vdDoyZjljNGM5Ni1iMDI0LTQxMjEtOGE3Yi1kNjNmMmQ2MjFkNDE=",
+         "X-Nuage-PageSize":"16",
+         "X-Nuage-Page":"0",
+         "X-Nuage-OrderBy":"vns.data.name ASC"
+      }
+   },
+   "paginationHeaders":{
+      "X-Nuage-PageSize": 16,
+      "X-Nuage-Page": 0,
+      "X-Nuage-Count": 3,
+      "X-Nuage-OrderBy": 3
+   }
+}
