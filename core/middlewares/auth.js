@@ -5,6 +5,8 @@ var send = require('../helpers/send');
 var errors = require('../messages/errors');
 var config = require('../config/config').get();
 var moment = require('moment');
+var log4js = require('log4js');
+var logger = log4js.getLogger('Tools.Swagger');
 
 /**
  * Function used for creation of a new token by credentials
@@ -28,13 +30,19 @@ function createToken(credentials) {
  * @param {function} next 
  */
 function ensureAuthenticated(req, res, next) {
-
+  logger.info('Ensure user authorized...')
   if (!req.headers.authorization) {
     return invalidToken();
   }
 
   var token = req.headers.authorization.split(" ")[1];
-  var payload = jwt.decode(token, config.JWT_SECRET);
+  
+  try {
+    var payload = jwt.decode(token, config.JWT_SECRET);
+  } catch (e) {
+    logger.error('Error decoding token');
+    return invalidToken();
+  } 
 
   if (payload.exp <= moment().unix()) {
     return invalidToken();

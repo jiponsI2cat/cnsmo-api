@@ -18,7 +18,17 @@ function init(app) {
   app.post(
     baseUrl + '/authenticate',
     jsonParser,
-    users.authenticate  
+    users.authenticate
+  )
+
+  // Test ensureAuthorize
+  app.get(
+    baseUrl + '/ensureAuth',
+    jsonParser,
+    ensureAuthorized,
+    function (req, res, next) {
+      res.end()
+    }
   )
 
 }

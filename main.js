@@ -64,7 +64,7 @@ var apiRoutes = require(apiRoutesPath);
 apiRoutes.init(app);
 
 // By default if it's not a a custom route send to VSD API
-var routes = require(path.join(routesFolder, 'configuration', 'vsdRoutes'));
+var routes = require(path.join(routesFolder, 'configuration', 'cnsmoRoutes'));
 /*app.use(ensureAuthorized, routes.processVSDRequest, routes.forwardRequestToVSD);*/
 
 // Start Server
