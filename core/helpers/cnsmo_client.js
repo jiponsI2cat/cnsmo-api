@@ -1,12 +1,12 @@
 'use strict';
-
+/*
 var log4js = require('log4js');
 var Q = require('q');
 var logger = log4js.getLogger('CNSMO CLIENT');
 var Client = require('node-rest-client').Client;
 
 function getVSD(header, arg, auth, url) {
-/*  var client = new Client();
+  var client = new Client();
   var deferred = Q.defer();
   logger.debug('url:' + url);
 
@@ -25,11 +25,11 @@ function getVSD(header, arg, auth, url) {
     onError(deferred, err);
   });
 
-  return deferred.promise;*/
+  return deferred.promise;
 }
 
 function deleteVSD(header, arg, auth, url, data) {
-/*  var client = new Client();
+  var client = new Client();
   var deferred = Q.defer();
   logger.debug('url:' + url);
 
@@ -48,11 +48,11 @@ function deleteVSD(header, arg, auth, url, data) {
     onError(deferred, err);
   });
 
-  return deferred.promise;*/
+  return deferred.promise;
 }
 
 function postVSD(header, arg, auth, url, data) {
-/*  var client = new Client();
+ var client = new Client();
   var deferred = Q.defer();
   logger.debug('url:' + url);
 
@@ -75,11 +75,11 @@ function postVSD(header, arg, auth, url, data) {
     onError(deferred, err);
   });
 
-  return deferred.promise;*/
+  return deferred.promise;
 }
 
 function putVSD(header, arg, auth, url, data) {
-/*  var client = new Client();
+  var client = new Client();
   var deferred = Q.defer();
   logger.debug('put url:' + url);
 
@@ -102,7 +102,7 @@ function putVSD(header, arg, auth, url, data) {
     onError(deferred, err);
   });
 
-  return deferred.promise;*/
+  return deferred.promise;
 }
 
 function onData(data, response, deferred) {
@@ -118,6 +118,7 @@ function onError(deferred, err) {
 }
 
 module.exports = {
-/*
-*/
+
 };
+
+*/

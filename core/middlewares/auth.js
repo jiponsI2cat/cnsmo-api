@@ -17,32 +17,32 @@ function createToken(credentials) {
   var payload = {
     sub: credentials.username + credentials.password,
     iat: moment().unix(),
-    exp: moment().add(config.TOKEN_EXPIRATION_DAYS, "days").unix(),
+    exp: moment().add(config.TOKEN_EXPIRATION_DAYS, 'days').unix(),
   };
   return jwt.encode(payload, config.JWT_SECRET);
 }
 
 /**
  * Middleware used for check the token by its expiration and
- * validation 
- * @param {object} req 
- * @param {object} res 
- * @param {function} next 
+ * validation
+ * @param {object} req
+ * @param {object} res
+ * @param {function} next
  */
 function ensureAuthenticated(req, res, next) {
-  logger.info('Ensure user authorized...')
+  logger.info('Ensure user authorized...');
   if (!req.headers.authorization) {
     return invalidToken();
   }
 
-  var token = req.headers.authorization.split(" ")[1];
-  
+  var token = req.headers.authorization.split(' ')[1];
+
   try {
     var payload = jwt.decode(token, config.JWT_SECRET);
   } catch (e) {
     logger.error('Error decoding token');
     return invalidToken();
-  } 
+  }
 
   if (payload.exp <= moment().unix()) {
     return invalidToken();

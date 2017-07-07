@@ -12,7 +12,7 @@ var logger = log4js.getLogger('App');
 var core = require('./core');
 
 // Load configuration
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.NODE_ENV = process.env.NODE_ENV;
 var config = require('./config/config');
 var port = process.env.PORT || config.port;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -48,7 +48,7 @@ if (config.SWAGGER) {
   const baseUrl = `${config.PROTOCOL}://${config.DOMAIN}:${config.port}`;
 
   swagger.init(app, baseUrl, swaggerURL, swaggerUI,
-   controllersFolder, ['routes.js']);
+    controllersFolder, ['routes.js']);
 }
 
 // Istambul
@@ -58,14 +58,17 @@ app.use('/coverage', express.static('./public/coverage/lcov-report'));
 app.use(cors());
 
 // Set Custom routes should start with /cnsmo url structure
-var ensureAuthorized = core.middlewares.auth.ensureAuthenticated;
-var apiRoutesPath = path.join(routesFolder, 'configuration', 'apiRoutes');
+/*var ensureAuthorized = core.middlewares.auth.ensureAuthenticated;
+*/var apiRoutesPath = path.join(routesFolder, 'configuration', 'apiRoutes');
 var apiRoutes = require(apiRoutesPath);
 apiRoutes.init(app);
 
 // By default if it's not a a custom route send to VSD API
-var routes = require(path.join(routesFolder, 'configuration', 'cnsmoRoutes'));
-/*app.use(ensureAuthorized, routes.processVSDRequest, routes.forwardRequestToVSD);*/
+/*var routes = require(path.join(routesFolder, 'configuration', 'cnsmoRoutes'));
+*//*app.use(
+  ensureAuthorized,
+  routes.processVSDRequest,
+  routes.forwardRequestToVSD);*/
 
 // Start Server
 app.listen(port, function() {
@@ -78,7 +81,7 @@ function start(cb) {
   // TODO: start communication with cnsmo python module
   // catch error if is not started correctly <eg. throw(err) >
   // call the cb(null, app) when come back the callback of
-  // communication with python module  
+  // communication with python module
   cb(null, app);
 }
 
@@ -93,29 +96,29 @@ const preExit = [];
 
 // Catch exit
 process.stdin.resume();
-process.on ('exit', (code) => {
+process.on('exit', (code) => {
   let i;
   logger.debug('Process exit');
   for (i = 0; i < preExit.length; i++) {
-    preExit[i] (code);
+    preExit[i](code);
   }
-  process.exit (code);
+  process.exit(code);
 });
 
 // Catch CTRL+C
-process.on ('SIGINT', () => {
+process.on('SIGINT', () => {
   logger.debug('\nCTRL+C...');
-  process.exit (0);
+  process.exit(0);
 });
 
 // Catch uncaught exception
-process.on ('uncaughtException', (err) => {
+process.on('uncaughtException', (err) => {
   logger.error(err);
-  process.exit (1);
+  process.exit(1);
 });
 
 // Add pre-exit script
-preExit.push ((code) => {
+preExit.push((code) => {
   logger.debug('Whoa! Exit code %d, cleaning up...', code);
   /*if (vnsLiteIsStarted) {vnsLite.stop((err) => {});}*/
 });

@@ -1,15 +1,15 @@
 'use strict';
 
-var core = require('../../core');
-
-var users = require('../../controllers/users')
+/*var core = require('../../core');
+*/
+var users = require('../../controllers/users');
 var config = require('../../config/config');
 var bodyParser = require('body-parser');
-var validators = require('../../helpers/validators');
+/*var validators = require('../../helpers/validators');
+*/
 
-
-var ensureAuthorized = core.middlewares.auth.ensureAuthenticated;
-var jsonParser = bodyParser.json();
+/*var ensureAuthorized = core.middlewares.auth.ensureAuthenticated;
+*/var jsonParser = bodyParser.json();
 
 function init(app) {
   const baseUrl = config.BASE_URL;
@@ -19,17 +19,17 @@ function init(app) {
     baseUrl + '/authenticate',
     jsonParser,
     users.authenticate
-  )
+  );
 
   // Test ensureAuthorize
-  app.get(
+/*  app.get(
     baseUrl + '/ensureAuth',
     jsonParser,
     ensureAuthorized,
-    function (req, res, next) {
-      res.end()
+    function(req, res, next) {
+      res.end();
     }
-  )
+  );*/
 
 }
 

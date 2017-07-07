@@ -1,0 +1,16 @@
+{
+    "config":{
+        "emptyObj":{
+            "TOKEN_EXPIRATION_DAYS": null,
+            "JWT_SECRET": null,
+            "MONGO_URL": null,
+            "LOG_LEVEL": null
+        },
+        "fullObj":{
+            "TOKEN_EXPIRATION_DAYS": 9,
+            "JWT_SECRET": "cnsmosecret9",
+            "MONGO_URL": "mongodb://localhost/cnsmo9",
+            "LOG_LEVEL": "/"
+        }
+    }
+}
