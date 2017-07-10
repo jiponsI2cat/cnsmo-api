@@ -8,9 +8,9 @@ var fileHelper = require('./file');
 function getRouteFiles(routesFolder, excludedFiles, cb) {
   fileHelper.getFilesFromDir(routesFolder, (err, files) => {
     if (err) {
-      cb(null, []);
+      cb([]);
     }
-    cb(null, excludeRouteFiles(files, routesFolder, excludedFiles));
+    cb(excludeRouteFiles(files, routesFolder, excludedFiles));
   });
 }
 

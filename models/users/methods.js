@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports.init = function (schema, modelName) {
-  UserSchema.statics.getByusername = function (username, email) {
+module.exports.init = function(schema, modelName) {
+  UserSchema.statics.getByusername = function(username, email) {
     var deferred = Q.defer();
     this.find({ username: username })
       .populate({ path: 'system.vsd', match: { email: email } })
@@ -24,9 +24,9 @@ module.exports.init = function (schema, modelName) {
 
   UserSchema.statics.authenticate = function(username, password) {
 
-  } 
+  };
 
-  UserSchema.statics.add = function (username, password, system, cb) {
+  UserSchema.statics.add = function(username, password, system, cb) {
     var data = {
       username: username,
       password: password, system: system
@@ -36,7 +36,7 @@ module.exports.init = function (schema, modelName) {
   };
 
   UserSchema.statics.addVSDUser =
-    function (username, password,
+    function(username, password,
       email, cb) {
 
       var VSDUser = db.model('VSDUser');
@@ -61,7 +61,7 @@ module.exports.init = function (schema, modelName) {
     };
 
   UserSchema.statics.updatePassword =
-    function (username, email, password, cb) {
+    function(username, email, password, cb) {
       this.find({ username: username })
         .populate({ path: 'system.vsd', match: { email: email } })
         .exec((err, response) => {
@@ -94,7 +94,7 @@ module.exports.init = function (schema, modelName) {
     };
 
   UserSchema.statics.deleteVSDUser =
-    function (username, cb) {
+    function(username, cb) {
       var VSDUser = db.model('VSDUser');
 
       VSDUser.delete((err, vsdUser) => {
@@ -108,10 +108,10 @@ module.exports.init = function (schema, modelName) {
     };
 
   UserSchema.statics.deleteVSDUsers =
-    function () {
+    function() {
       var deferred = Q.defer();
       this.find({})
-        .populate({ path: 'system.vsd', match: {: } })
+        .populate({ path: 'system.vsd', match: { } })
         .lean()
         .exec((err, response) => {
           if (response && _.isArray(response)) {

@@ -3,7 +3,7 @@
 var fs = require('fs')
 , path = require('path');
 
-function directoryExists(dir, cb) {
+/*function directoryExists(dir, cb) {
   fs.stat(dir, (err) => {
     if (err && (err.errno === 34 || err.errno === 2 || err.code === 'ENOENT')) {
       cb(null, false);
@@ -11,7 +11,7 @@ function directoryExists(dir, cb) {
       cb(err, true);
     }
   });
-}
+}*/
 
 function getFilesFromDir(dir, cb) {
   fs.readdir(dir, (err, files) => {
@@ -31,6 +31,6 @@ function getFilesFromDir(dir, cb) {
 }
 
 module.exports = {
-  directoryExists: directoryExists,
+/*  directoryExists: directoryExists,*/
   getFilesFromDir: getFilesFromDir
 };

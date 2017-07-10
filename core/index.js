@@ -18,11 +18,6 @@ function start(configData) {
         auth: require('./middlewares/auth'),
         parser: require('./middlewares/parser')
       },
-      models: {
-        /*        TokenVSDUser: require('./models/token_vsd_user'),
-        */        /*VSDUser: require('./models/vsd_user'),
-                CNSMOUser: require('./models/cnsmo_user')*/
-      },
       helpers: {
         cnsmoClient: require('./helpers/cnsmo_client'),
         send: require('./helpers/send'),

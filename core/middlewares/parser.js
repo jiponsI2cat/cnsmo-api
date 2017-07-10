@@ -1,7 +1,7 @@
 'use strict';
 
 
-function bodyParserErrorHandler(err, req, res, next) {
+/*function bodyParserErrorHandler(err, req, res, next) {
   if (err) {
     res.statusCode = err.statusCode;
     res.json({errors: `${err.name}: ${err.message}`});
@@ -12,4 +12,4 @@ function bodyParserErrorHandler(err, req, res, next) {
 
 module.exports = {
   bodyParserErrorHandler: bodyParserErrorHandler
-};
+};*/

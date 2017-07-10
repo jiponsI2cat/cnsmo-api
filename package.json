@@ -31,9 +31,9 @@
     "acceptances": "mocha ./test/acceptances/*.js --timeout 10000",
     "security": "nsp  check",
     "coverage": "NODE_ENV=development istanbul cover node_modules/mocha/bin/_mocha ./test/**/*.js -- --timeout 10000",
-    "check": "npm run lint; npm run coverage; npm outdated; npm run security",
+    "check": "npm run lint -s; npm run coverage -s; npm outdated -s; npm run security",
     "coverage:unit": "istanbul cover node_modules/mocha/bin/_mocha ./test/unit/*.js",
-    "check:unit": "npm run lint; npm run coverage:unit; npm outdated; npm run security"
+    "check:unit": "npm run lint -s; npm run coverage:unit; npm outdated; npm run security"
   },
   "devDependencies": {
     "chai": "^3.5.0",

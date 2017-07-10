@@ -13,25 +13,23 @@ function init(app, urlBasePath, swaggerURL, swaggerUI,
 
   app.use(swaggerURL, express.static(swaggerUI));
 
-  routesHelper.getRouteFiles(controllersFolder, excluded, (err, files) => {
-    if (err) {
-      logger.error('Error retriving routes for swagger');
-    } else {
-      logger.debug('Swagger api files: ', files.join(', '));
+  routesHelper.getRouteFiles(controllersFolder, excluded, (files) => {
 
-      var swaggerMiddleware = function() {
-        return swagger.init(app, {
-          apiVersion: '0.0.1',
-          swaggerVersion: '1.0',
-          basePath: urlBasePath,
-          swaggerURL: swaggerURL,
-          swaggerJSON: '/api-docs.json',
-          swaggerUI: swaggerUI,
-          apis: files
-        });
-      };
-      app.use(swaggerMiddleware());
-    }
+    logger.debug('Swagger api files: ', files.join(', '));
+
+    var swaggerMiddleware = function() {
+      return swagger.init(app, {
+        apiVersion: '0.0.1',
+        swaggerVersion: '1.0',
+        basePath: urlBasePath,
+        swaggerURL: swaggerURL,
+        swaggerJSON: '/api-docs.json',
+        swaggerUI: swaggerUI,
+        apis: files
+      });
+    };
+    app.use(swaggerMiddleware());
+
   });
 }
 
