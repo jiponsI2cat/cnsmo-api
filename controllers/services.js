@@ -1,17 +1,16 @@
 'use strict';
 var core = require('../core');
 var send = core.helpers.send;
-var credentials = core.initParams.credentials;
-var auth = core.middlewares.auth;
+var cnsmoClient = core.helpers.cnsmoClient;
 
 /**
- * This function provide a token to a requester by validating
- * its credentials (username and password). The credentials
- * should match with credentials stored in a init JSON file
- * generated when current VM is created.
+ * This configure a client machine by parameters sended via body
+ * from requester. The JSON should contain a valid ip and the
+ * other parameters to configure
+ * (TODO: eventually it checks if exists client machine)
  */
-function authenticate(req, res) {
-  const reqCredentials = req.body;
+function configureClientMachine(req, res) {
+  const config = req.body;
   let result;
   try {
     if (reqCredentials.username === credentials.username &&
@@ -36,6 +35,5 @@ function authenticate(req, res) {
 }
 
 module.exports = {
-  authenticate: authenticate
+  configureClientMachine: configureClientMachine
 };
-

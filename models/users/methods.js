@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 module.exports.init = function(schema, modelName) {
   UserSchema.statics.getByusername = function(username, email) {
@@ -156,3 +156,4 @@ module.exports.init = function(schema, modelName) {
 
   return schema;
 };
+*/

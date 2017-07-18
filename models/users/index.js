@@ -2,10 +2,13 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Q = require('q');
-var db = require('../helpers/db').db;
+var core = require('../../core');
 
 const modelName = 'User';
+
+var dbHelpers = core.helpers.db;
+
+var methods = require('./methods');
 
 var UserSchema = new Schema({
   id: {type: String, required: true, unique: true},
