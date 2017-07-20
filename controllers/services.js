@@ -9,31 +9,28 @@ var cnsmoClient = core.helpers.cnsmoClient;
  * other parameters to configure
  * (TODO: eventually it checks if exists client machine)
  */
-function configureClientMachine(req, res) {
-  const config = req.body;
-  let result;
-  try {
-    if (reqCredentials.username === credentials.username &&
-      reqCredentials.password === credentials.password) {
-      result = {
-        code: 200,
-        response: {
-          token: auth.createToken(reqCredentials)
-        }
-      };
-      send(res, result.code, result.response);
-    } else {
-      const error = {
-        code: 401,
-        message: 'Username or password not valid!'
-      };
-      throw error;
-    }
-  } catch (e) {
-    return send(res, e.code, e);
-  }
+function configureFirewall(req, res) {
+  /*   const data = req.body;*/
+  const testData = {
+    direction: 'out',
+    protocol: 'tcp',
+    dst_port: '80',
+    dst_src: 'dst',
+    ip_range: '10.217.123.7/20',
+    action: 'acpt'
+  };
+  cnsmoClient.post('127.0.0.1:20095/fw/', testData).then((result) => {
+    return send(res, result.code, result.response);
+  }, (err) => {
+    console.log(err);
+    const error = {
+      code: 500,
+      message: 'Error!'
+    };
+    return send(res, error.code, error);
+  });
 }
 
 module.exports = {
-  configureClientMachine: configureClientMachine
+  configureFirewall: configureFirewall
 };

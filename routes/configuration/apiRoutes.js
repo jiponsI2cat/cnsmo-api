@@ -24,10 +24,10 @@ function init(app) {
 
   // Services
   app.post(
-    baseUrl + '/services/configure/clientMachine',
+    baseUrl + '/services/configure/configureFirewall',
     jsonParser,
     ensureAuthorized,
-    services.configureClientMachine
+    services.configureFirewall
   );
 
   // Test ensureAuthorize
