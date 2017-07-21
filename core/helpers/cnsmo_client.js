@@ -73,11 +73,12 @@ function post(url, data) {
 
   Request.post(options,
     (error, response, body) => {
-      if (!error) {
-        onData(body, response, deferred);
-      } else {
+      console.log(error);
+      if (error) {
         onError(deferred, error);
       }
+      onData(body, response, deferred);
+
     });
 
   return deferred.promise;
