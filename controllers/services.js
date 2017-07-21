@@ -26,7 +26,7 @@ function configureFirewall(req, res) {
     console.log(result);
     let respns = result.response;
     respns = 'msgRspsn';
-    return send(res, result.statusCode, respns);
+    return send(res, result.response.statusCode, respns);
   }).catch(function(err) {
     console.log(err);
     const error = {
