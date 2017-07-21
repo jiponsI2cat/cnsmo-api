@@ -68,7 +68,9 @@ function post(url, data, cb) {
   Request.post({ url, formData: data },
     (error, response, body) => {
       if (!error) {
+        console.log(response);
         onData(data, response, deferred);
+
       } else {
         onError(deferred, error);
       }
@@ -106,7 +108,7 @@ function post(url, data, cb) {
 
 function onData(data, response, deferred) {
   data = (data instanceof Buffer) ? null : data;
-  logger.debug('response from cnsmo client' + JSON.stringify(data));
+  logger.debug('response from cnsmo client ' + JSON.stringify(data));
   deferred.resolve({ data: data, response: response });
 }
 
