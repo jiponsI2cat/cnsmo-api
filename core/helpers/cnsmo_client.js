@@ -61,7 +61,7 @@ function get(url) {
  * @param {object} data data that will be passed in body
  * request
  */
-function post(url, data, cb) {
+function post(url, data) {
   var deferred = Q.defer();
   logger.debug('url:' + url);
 
