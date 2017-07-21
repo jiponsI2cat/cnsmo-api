@@ -5,6 +5,5 @@ module.exports = function(res, code, message) {
   res.statusCode = code;
   console.log("MESSAGE:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",
   message);
-  res.json(message);
   res.json();
 };
