@@ -65,7 +65,7 @@ function post(url, data, cb) {
   var deferred = Q.defer();
   logger.debug('url:' + url);
 
-  Request.post({ url, formData: data },
+  Request.post({ url, form: data },
     (error, response, body) => {
       if (!error) {
         onData(body, response, deferred);
