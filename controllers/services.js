@@ -19,15 +19,16 @@ function configureFirewall(req, res) {
     ip_range: '10.217.123.7/20',
     action: 'acpt'
   };
-  cnsmoClient.post('http://127.0.0.1:20095/fw/', testData).then((result) => {
+  cnsmoClient.post('http://127.0.0.1:20095/fw/', testData, (err, result) => {
+    if (err) {
+      console.log(err);
+      const error = {
+        code: 500,
+        message: 'Error!'
+      };
+      return send(res, error.code, error);
+    }
     return send(res, result.code, result.response);
-  }, (err) => {
-    console.log(err);
-    const error = {
-      code: 500,
-      message: 'Error!'
-    };
-    return send(res, error.code, error);
   });
 }
 
