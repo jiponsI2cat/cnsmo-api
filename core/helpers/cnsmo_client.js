@@ -68,9 +68,7 @@ function post(url, data, cb) {
   Request.post({ url, formData: data },
     (error, response, body) => {
       if (!error) {
-        console.log(response);
-        onData(data, response, deferred);
-
+        onData(body, response, deferred);
       } else {
         onError(deferred, error);
       }

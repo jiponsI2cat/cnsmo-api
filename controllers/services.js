@@ -11,6 +11,9 @@ var cnsmoClient = core.helpers.cnsmoClient;
  */
 function configureFirewall(req, res) {
   /*   const data = req.body;*/
+
+
+  // send(res, code, message) :::::::::::>>>>>>>>>>> res.body(message)
   const testData = {
     direction: 'out',
     protocol: 'tcp',
@@ -26,9 +29,11 @@ function configureFirewall(req, res) {
         code: 500,
         message: 'Error!'
       };
-      return send(res, error.code, error);
+      return send(res, error.code, error.message);
     }
-    return send(res, result.code, result.response);
+    let respns = result.response;
+    respns = 'msgRspsn';
+    return send(res, result.statusCode, respns);
   });
 }
 
