@@ -3,6 +3,8 @@
 module.exports = function(res, code, message) {
   message = message || {};
   res.statusCode = code;
-  console.log(message);
+  console.log("MESSAGE:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::",
+  message);
   res.json(message);
+  res.json();
 };
