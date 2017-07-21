@@ -4,6 +4,7 @@ var log4js = require('log4js');
 var Q = require('q');
 var logger = log4js.getLogger('CNSMO CLIENT');
 var Client = require('node-rest-client').Client;
+var Request = require('request');
 
 const header = {};
 header['Accept'] = 'application/json';
@@ -61,20 +62,17 @@ function get(url) {
  * request
  */
 function post(url, data) {
-  var client = new Client();
   var deferred = Q.defer();
   logger.debug('url:' + url);
 
-  var args = {
-    headers: header,
-    data: data
-  };
-
-  client.post(url, args, (data, response) => {
-    onData(data, response, deferred);
-  }).on('error', (err) => {
-    onError(deferred, err);
-  });
+  Request.post({ url, formData: data },
+    (error, response, body) => {
+      if (!error) {
+        onData(data, response, deferred);
+      } else {
+        onError(deferred, error);
+      }
+    });
 
   return deferred.promise;
 }
