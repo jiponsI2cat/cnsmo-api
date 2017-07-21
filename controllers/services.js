@@ -19,7 +19,7 @@ function configureFirewall(req, res) {
     ip_range: '10.217.123.7/20',
     action: 'acpt'
   };
-  cnsmoClient.post('127.0.0.1:20095/fw/', testData).then((result) => {
+  cnsmoClient.post('http://127.0.0.1:20095/fw/', testData).then((result) => {
     return send(res, result.code, result.response);
   }, (err) => {
     console.log(err);
