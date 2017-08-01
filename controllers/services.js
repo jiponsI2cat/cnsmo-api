@@ -37,20 +37,21 @@ function getRules(req, res) {
   const stringRule1 = '{"direction":"out","protocol":"tcp",' +
     '"dst_port":"80", "dst_src":"dst", "ip_range":"10.217.123.7/20",' +
     '"action":"acpt"} ';
-  const rule = JSON.parse(stringRule1);
-  const rule1 = rule;
-  const rule2 = rule;
-  const rule3 = rule;
+  const stringRule2 = '{"direction":"out","protocol":"udp",' +
+    '"dst_port":"8080", "dst_src":"dst", "ip_range":"10.217.123.7/20",' +
+    '"action":"rjct"} ';
+  const stringRule3 = '{"direction":"out","protocol":"tcp",' +
+    '"dst_port":"9080", "dst_src":"src", "ip_range":"10.217.123.7/22",' +
+    '"action":"acpt"} ';
 
-  rule2.port = '8080';
-  rule2.protocol = 'udp';
-  rule3.port = '4200';
-  rule3.protocol = 'tcp';
-  rule3.dst_src = 'src';
+  const rule1 = JSON.parse(stringRule1);
+  const rule2 = JSON.parse(stringRule2);
+  const rule3 = JSON.parse(stringRule3);
 
   const mockedRules = [
     rule1, rule2, rule3
   ];
+  console.log(mockedRules);
   return send(res, 200, mockedRules);
 }
 
