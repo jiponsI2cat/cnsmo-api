@@ -37,7 +37,7 @@ function getRules(req, res) {
   const stringRule1 = '{"direction":"out","protocol":"tcp",' +
     '"dst_port":"80", "dst_src":"dst", "ip_range":"10.217.123.7/20",' +
     '"action":"acpt"} ';
-  const rule = JSON.parse(stringRule1);
+  let rule = JSON.parse(stringRule1);
   const rule1 = rule;
   rule.port = '8080';
   rule.protocol = 'udp';
