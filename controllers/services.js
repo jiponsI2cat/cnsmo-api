@@ -33,7 +33,7 @@ function addRule(req, res) {
  * @param {*} req
  * @param {*} res
  */
-function getRule(req, res) {
+function getRules(req, res) {
   const stringRule1 = '{"direction":"out","protocol":"tcp",' +
     '"dst_port":"80", "dst_src":"dst", "ip_range":"10.217.123.7/20",' +
     '"action":"acpt"} ';
@@ -41,11 +41,11 @@ function getRule(req, res) {
   const rule1 = rule;
   rule.port = '8080';
   rule.protocol = 'udp';
-  const rule2 = JSON.parse(rule);
+  const rule2 = rule;
   rule.port = '4200';
   rule.protocol = 'tcp';
   rule.dst_src = 'src';
-  const rule3 = JSON.parse(rule);
+  const rule3 = rule;
   const mockedRules = [
     rule1, rule2, rule3
   ];
@@ -53,6 +53,8 @@ function getRule(req, res) {
 }
 
 module.exports = {
-  addRule: addRule,
-  getRule: getRule
+  fw: {
+    addRule: addRule,
+    getRules: getRules
+  }
 };

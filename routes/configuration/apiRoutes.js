@@ -27,14 +27,14 @@ function init(app) {
     baseUrl + '/services/fw/rules',
     jsonParser,
     ensureAuthorized,
-    services.addRule
+    services.fw.addRule
   );
 
   app.get(
     baseUrl + '/services/fw/rules',
     jsonParser,
     ensureAuthorized,
-    services.getRule
+    services.fw.getRules
   );
 
   // Test ensureAuthorize
