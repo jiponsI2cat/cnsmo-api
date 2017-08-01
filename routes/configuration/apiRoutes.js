@@ -24,10 +24,17 @@ function init(app) {
 
   // Services
   app.post(
-    baseUrl + '/services/configure/configureFirewall',
+    baseUrl + '/services/fw/rules',
     jsonParser,
     ensureAuthorized,
-    services.configureFirewall
+    services.addRule
+  );
+
+  app.get(
+    baseUrl + '/services/fw/rules',
+    jsonParser,
+    ensureAuthorized,
+    services.getRule
   );
 
   // Test ensureAuthorize
