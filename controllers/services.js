@@ -13,11 +13,11 @@ var cnsmoClient = core.helpers.cnsmoClient;
 function addRule(req, res) {
   const bodyReq = req.body;
   cnsmoClient.post('http://127.0.0.1:20095/fw/', bodyReq)
-    .then(function(result) {
+    .then(function (result) {
       console.log(result);
       const response = result.response;
       return send(res, response.statusCode, '');
-    }).catch(function(err) {
+    }).catch(function (err) {
       console.log(err);
       const error = {
         code: 500,
@@ -37,15 +37,17 @@ function getRules(req, res) {
   const stringRule1 = '{"direction":"out","protocol":"tcp",' +
     '"dst_port":"80", "dst_src":"dst", "ip_range":"10.217.123.7/20",' +
     '"action":"acpt"} ';
-  let rule = JSON.parse(stringRule1);
+  const rule = JSON.parse(stringRule1);
   const rule1 = rule;
-  rule.port = '8080';
-  rule.protocol = 'udp';
   const rule2 = rule;
-  rule.port = '4200';
-  rule.protocol = 'tcp';
-  rule.dst_src = 'src';
   const rule3 = rule;
+
+  rule2.port = '8080';
+  rule2.protocol = 'udp';
+  rule3.port = '4200';
+  rule3.protocol = 'tcp';
+  rule3.dst_src = 'src';
+
   const mockedRules = [
     rule1, rule2, rule3
   ];
