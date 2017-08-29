@@ -18,7 +18,8 @@
     "node-rest-client": "2.0.1",
     "q": "1.4.1",
     "request": "^2.79.0",
-    "swagger-express": "latest"
+    "swagger-express": "latest",
+    "cnsmo_web": "git+https://github.com/wfriscina/cnsmo-web.git#develop"
   },
   "engines": {
     "node": ">=0.10.0"

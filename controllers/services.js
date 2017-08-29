@@ -3,6 +3,8 @@ var core = require('../core');
 var send = core.helpers.send;
 var cnsmoClient = core.helpers.cnsmoClient;
 
+// ==================== START - FW SERVICES ======================= //
+
 /**
  * This configure a client machine by parameters sended via body
  * from requester. The JSON should contain a valid ip and the
@@ -51,13 +53,40 @@ function getRules(req, res) {
   const mockedRules = [
     rule1, rule2, rule3
   ];
-  console.log(mockedRules);
   return send(res, 200, mockedRules);
 }
+
+/**
+ * TODO: this function is actually mocked because internal server hasn't
+ * GET method implemented yet.
+ * @param {*} req 
+ * @param {*} res 
+ */
+function getNodes(req, res) {
+  const mockedNodes = [
+    {
+      instanceId: 'Client.1',
+      services: ['vpn', 'sdn', 'fw', 'lb'],
+      vpnAddress: '10.10.10.2'
+    },
+    {
+      instanceId: 'Client.2',
+      services: ['vpn', 'fw', 'lb'],
+      vpnAddress: '10.10.10.3'
+    }
+  ];
+
+  return send(res, 200, mockedNodes);
+}
+
+// ==================== END - FW SERVICES ======================= //
 
 module.exports = {
   fw: {
     addRule: addRule,
     getRules: getRules
+  },
+  sdn: {
+    getNodes: getNodes
   }
 };

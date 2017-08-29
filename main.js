@@ -70,6 +70,13 @@ apiRoutes.init(app);
   routes.processVSDRequest,
   routes.forwardRequestToVSD);*/
 
+// Serve cnsmo_web
+const cnsmo_web = path.join(__dirname, 'node_modules/cnsmo_web/dist');
+app.use(express.static(cnsmo_web));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(cnsmo_web, '/index.html'));
+});
+
 // Start Server
 app.listen(port, function() {
   logger.info('Express server listening on port ' + port);

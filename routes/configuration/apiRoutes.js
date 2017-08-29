@@ -22,7 +22,7 @@ function init(app) {
     users.authenticate
   );
 
-  // Services
+  // Firewall
   app.post(
     baseUrl + '/services/fw/rules',
     jsonParser,
@@ -35,6 +35,14 @@ function init(app) {
     jsonParser,
     ensureAuthorized,
     services.fw.getRules
+  );
+
+  //Nodes
+  app.get(
+    baseUrl + '/services/sdn/nodes',
+    jsonParser,
+    ensureAuthorized,
+    services.sdn.getNodes
   );
 
   // Test ensureAuthorize
