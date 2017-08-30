@@ -1,0 +1,53 @@
+{
+  "name": "cnsmo-api",
+  "version": "0.0.1",
+  "dependencies": {
+    "async-rollback": "0.0.1",
+    "body-parser": "~1.16.0",
+    "cors": "~2.8.1",
+    "deasync": "^0.1.9",
+    "express": "4.x",
+    "istanbul": "^0.4.5",
+    "joi": "^10.3.0",
+    "jsonwebtoken": "^7.2.1",
+    "jwt-simple": "^0.5.1",
+    "lodash": "^4.17.4",
+    "log4js": "^1.1.0",
+    "mongoose": "latest",
+    "morgan": "latest",
+    "node-rest-client": "2.0.1",
+    "q": "1.4.1",
+    "request": "^2.79.0",
+    "swagger-express": "latest",
+    "cnsmo_web": "git+https://github.com/wfriscina/cnsmo-web.git#develop"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development node app.js",
+    "lint": "eslint --ext .js ./",
+    "lint:fix": "eslint --fix ./",
+    "test": "mocha ./test/unit/*.js",
+    "acceptances": "mocha ./test/acceptances/*.js --timeout 10000",
+    "security": "nsp  check",
+    "coverage": "NODE_ENV=development istanbul cover node_modules/mocha/bin/_mocha ./test/**/*.js -- --timeout 10000",
+    "check": "npm run lint -s; npm run coverage -s; npm outdated -s; npm run security",
+    "coverage:unit": "istanbul cover node_modules/mocha/bin/_mocha ./test/unit/*.js",
+    "check:unit": "npm run lint -s; npm run coverage:unit; npm outdated; npm run security"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.13.0",
+    "mocha": "^3.2.0",
+    "nsp": "^2.6.2",
+    "pre-commit": "^1.2.2",
+    "request": "^2.81.0",
+    "rewire": "^2.5.2",
+    "supertest": "^3.0.0",
+    "swagger-express": "^1.0.5"
+  },
+  "pre-commit": [
+    "check"
+  ]
+}
