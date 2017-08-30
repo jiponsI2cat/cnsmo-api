@@ -19,7 +19,7 @@
     "q": "1.4.1",
     "request": "^2.79.0",
     "swagger-express": "latest",
-    "cnsmo_web": "git+https://github.com/wfriscina/cnsmo-web.git#develop"
+    "cnsmo_web": "git+https://github.com/wfriscina/cnsmo-web.git"
   },
   "engines": {
     "node": ">=0.10.0"
