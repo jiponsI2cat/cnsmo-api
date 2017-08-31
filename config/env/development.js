@@ -5,7 +5,7 @@ module.exports = {
   MONGO_URL: 'mongodb://localhost/cnsmo',
   DOMAIN: '127.0.0.1',
   PROTOCOL: 'http',
-  port: process.env.PORT || 8080,
+  port: process.env.PORT || 8090,
   SWAGGER: true,
   JWT_SECRET: 'cnsmosecret',
   TOKEN_EXPIRATION_DAYS: 10,
