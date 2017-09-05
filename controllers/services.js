@@ -59,8 +59,8 @@ function getRules(req, res) {
 /**
  * TODO: this function is actually mocked because internal server hasn't
  * GET method implemented yet.
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 function getNodes(req, res) {
   /* const mockedNodes = [
@@ -78,13 +78,13 @@ function getNodes(req, res) {
 
   cnsmoClient.get('http://127.0.0.1:20092/vpn/server/clients/')
     .then((result) => {
-      console.log(result.data);
+      console.log(result);
       var resp = Object.keys(result.data).map((key) => {
-        const entry = result.data[key];
-        var retObj = { entry, instanceID: key };
+        var retObj = result.data[key];
+        retObj.instanceID = key;
         return retObj;
       });
-      console.log(resp);
+      console.log('response: ', resp);
       return send(res, result.statusCode, resp);
     }).catch((err) => {
       console.log(err);
