@@ -85,7 +85,7 @@ function getNodes(req, res) {
         return retObj;
       });
       console.log('response: ', resp);
-      return send(res, 200, resp.data);
+      return send(res, res.statusCode, resp);
     }).catch((err) => {
       console.log(err);
       const error = {
