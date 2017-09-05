@@ -42,7 +42,7 @@ function init(app) {
     baseUrl + '/services/sdn/nodes',
     jsonParser,
     ensureAuthorized,
-    services.sdn.getNodes
+    services.vpn.getNodes
   );
 
   // Test ensureAuthorize
