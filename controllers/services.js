@@ -78,16 +78,14 @@ function getNodes(req, res) {
 
   cnsmoClient.get('http://127.0.0.1:20092/vpn/server/clients/')
     .then((result) => {
-      console.log(result);
-      var resp = Object.keys(result).map((key) => {
-        const entry = result[key];
+      console.log(result.data);
+      var resp = Object.keys(result.data).map((key) => {
+        const entry = result.data[key];
         var retObj = { entry, instanceID: key };
         return retObj;
       });
-
-      console.log(result);
-      const response = resp.response;
-      return send(res, response.statusCode, '');
+      console.log(resp);
+      return send(resp, result.statusCode, '');
     }).catch((err) => {
       console.log(err);
       const error = {
