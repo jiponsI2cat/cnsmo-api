@@ -63,24 +63,11 @@ function getRules(req, res) {
  * @param {*} res
  */
 function getNodes(req, res) {
-  /* const mockedNodes = [
-    {
-      instanceId: 'Client.1',
-      services: ['vpn', 'sdn', 'fw', 'lb'],
-      vpnAddress: '10.10.10.2'
-    },
-    {
-      instanceId: 'Client.2',
-      services: ['vpn', 'fw', 'lb'],
-      vpnAddress: '10.10.10.3'
-    }
-  ]; */
-
   cnsmoClient.get('http://127.0.0.1:20092/vpn/server/clients/')
     .then((result) => {
       var resp = Object.keys(result.data).map((key) => {
         var retObj = result.data[key];
-        retObj.InstanceID = key;
+        retObj.instanceID = key;
         return retObj;
       });
       return send(res, res.statusCode, resp);
