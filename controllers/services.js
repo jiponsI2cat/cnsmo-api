@@ -15,11 +15,11 @@ var cnsmoClient = core.helpers.cnsmoClient;
 function addRule(req, res) {
   const bodyReq = req.body;
   cnsmoClient.post('http://127.0.0.1:20095/fw/', bodyReq)
-    .then(function (result) {
+    .then((result) => {
       console.log(result);
       const response = result.response;
       return send(res, response.statusCode, '');
-    }).catch(function (err) {
+    }).catch((err) => {
       console.log(err);
       const error = {
         code: 500,
@@ -59,11 +59,11 @@ function getRules(req, res) {
 /**
  * TODO: this function is actually mocked because internal server hasn't
  * GET method implemented yet.
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
 function getNodes(req, res) {
-  const mockedNodes = [
+  /* const mockedNodes = [
     {
       instanceId: 'Client.1',
       services: ['vpn', 'sdn', 'fw', 'lb'],
@@ -74,9 +74,26 @@ function getNodes(req, res) {
       services: ['vpn', 'fw', 'lb'],
       vpnAddress: '10.10.10.3'
     }
-  ];
+  ]; */
 
-  return send(res, 200, mockedNodes);
+  cnsmoClient.get('http://127.0.0.1:20092/vpn/server/clients/')
+    .then((result) => {
+      var resp = Object.keys(result.data).map((key) => {
+        var retObj = result.data[key];
+        retObj.InstanceID = key;
+        return retObj;
+      });
+      return send(res, res.statusCode, resp);
+    }).catch((err) => {
+      console.log(err);
+      const error = {
+        code: 500,
+        message: 'Error!'
+      };
+      return send(res, error.code, error);
+    });
+
+  /* return send(res, 200, mockedNodes); */
 }
 
 // ==================== END - FW SERVICES ======================= //
@@ -86,7 +103,7 @@ module.exports = {
     addRule: addRule,
     getRules: getRules
   },
-  sdn: {
+  vpn: {
     getNodes: getNodes
   }
 };
