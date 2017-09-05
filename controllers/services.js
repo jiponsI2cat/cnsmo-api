@@ -67,7 +67,7 @@ function getNodes(req, res) {
     .then((result) => {
       var resp = Object.keys(result.data).map((key) => {
         var retObj = result.data[key];
-        retObj.instanceID = key;
+        retObj.instanceId = key;
         return retObj;
       });
       return send(res, res.statusCode, resp);
