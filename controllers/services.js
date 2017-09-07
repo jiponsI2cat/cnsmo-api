@@ -87,7 +87,24 @@ function getFlows(req, res) {
   cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', {})
     .then((result) => {
       const resp = (result.data === {}) ? '' : result.data;
-      return send(res, res.statusCode, result.data);
+      return send(res, res.statusCode, resp);
+    }).catch((err) => {
+      console.log(err);
+      const error = {
+        code: 500,
+        message: 'Error!'
+      };
+      return send(res, error.code, error);
+    });
+}
+
+function getFlow(req, res) {
+  const instanceId = req.params.instanceId;
+  const reqParams = { ssinstanceId: instanceId };
+  cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', reqParams)
+    .then((result) => {
+      const resp = (result.data === {}) ? '' : result.data;
+      return send(res, res.statusCode, resp);
     }).catch((err) => {
       console.log(err);
       const error = {
@@ -100,7 +117,8 @@ function getFlows(req, res) {
 
 function blockByPort(req, res) {
   const bodyReq = req.body;
-  const blockByPortUrl = 'http://127.0.0.1:20199/sdn/server/filter/blockbyport/'
+  const blockByPortUrl = 'http://127.0.0.1:20199/sdn/server/' +
+    'filter/blockbyport/';
   cnsmoClient.put(blockByPortUrl, bodyReq)
     .then((result) => {
       console.log(result);
@@ -126,6 +144,7 @@ module.exports = {
   },
   sdn: {
     getFlows: getFlows,
+    getFlow: getFlow,
     blockByPort: blockByPort
   }
 };

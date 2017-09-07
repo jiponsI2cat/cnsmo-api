@@ -52,6 +52,13 @@ function init(app) {
     services.sdn.getFlows
   );
 
+  app.get(
+    baseUrl + '/services/sdn/flows/:instanceId',
+    jsonParser,
+    ensureAuthorized,
+    services.sdn.getFlow
+  );
+
   app.put(
     baseUrl + '/services/sdn/blockbyport',
     jsonParser,

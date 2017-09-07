@@ -33,29 +33,6 @@ function get(url, data) {
   return deferred.promise;
 }
 
-/* function remove(arg, auth, url, data) {
-  var client = new Client();
-  var deferred = Q.defer();
-  logger.debug('url:' + url);
-
-  header['Authorization'] = 'XREST ' + auth;
-  var args = {
-    arg: args,
-    headers: header
-  };
-
-  logger.debug('args:' + JSON.stringify(args));
-  logger.debug('options:' + JSON.stringify(auth));
-
-  client.delete(url, args, (data, response) => {
-    onData(data, response, deferred);
-  }).on('error', (err) => {
-    onError(deferred, err);
-  });
-
-  return deferred.promise;
-} */
-
 /**
  * Client POST method
  * @param {string} url url of server API
