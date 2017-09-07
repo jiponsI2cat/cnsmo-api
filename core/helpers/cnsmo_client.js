@@ -18,10 +18,10 @@ function get(url, data) {
   var client = new Client();
   var deferred = Q.defer();
   logger.debug('url:' + url);
-
+  console.log(data);
   var args = {
     headers: header,
-    parameters: data
+    data: data
   };
 
   client.get(url, args, (data, response) => {
