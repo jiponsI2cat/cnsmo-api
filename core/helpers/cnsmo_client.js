@@ -14,13 +14,14 @@ header['Content-Type'] = 'application/json';
  * Client GET method
  * @param {string} url url of server API
  */
-function get(url) {
+function get(url, data) {
   var client = new Client();
   var deferred = Q.defer();
   logger.debug('url:' + url);
 
   var args = {
-    headers: header
+    headers: header,
+    body: JSON.stringify(data)
   };
 
   client.get(url, args, (data, response) => {

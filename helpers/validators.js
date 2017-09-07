@@ -9,7 +9,7 @@ const blockByPortSchema = services.blockByPortSchema;
 function blockByPort(req, res, next) {
   const params = req.body;
   Joi.validate(params, blockByPortSchema,
-    { stripUnknown: true }, (error, value) => {
+    { stripUnknown: false }, (error, value) => {
       if (error) {
         return send(res, error.code || 400,
           { errors: error.details[0].message });
