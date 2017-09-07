@@ -45,6 +45,13 @@ function init(app) {
     services.vpn.getNodes
   );
 
+  app.get(
+    baseUrl + '/services/sdn/flows',
+    jsonParser,
+    ensureAuthorized,
+    services.sdn.getFlows
+  );
+
   // Test ensureAuthorize
 /*  app.get(
     baseUrl + '/ensureAuth',

@@ -79,11 +79,23 @@ function getNodes(req, res) {
       };
       return send(res, error.code, error);
     });
-
-  /* return send(res, 200, mockedNodes); */
 }
 
 // ==================== END - FW SERVICES ======================= //
+
+function getFlows(req, res) {
+  cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', {})
+    .then((result) => {
+      return send(res, res.statusCode, result.data);
+    }).catch((err) => {
+      console.log(err);
+      const error = {
+        code: 500,
+        message: 'Error!'
+      };
+      return send(res, error.code, error);
+    });
+}
 
 module.exports = {
   fw: {
@@ -92,5 +104,8 @@ module.exports = {
   },
   vpn: {
     getNodes: getNodes
+  },
+  sdn: {
+    getFlows: getFlows
   }
 };
