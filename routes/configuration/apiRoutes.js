@@ -52,6 +52,13 @@ function init(app) {
     services.sdn.getFlows
   );
 
+  app.put(
+    baseUrl + '/services/sdn/blockbyport',
+    jsonParser,
+    ensureAuthorized,
+    services.sdn.blockByPort
+  );
+
   // Test ensureAuthorize
 /*  app.get(
     baseUrl + '/ensureAuth',
