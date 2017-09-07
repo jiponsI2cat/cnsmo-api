@@ -100,7 +100,7 @@ function getFlows(req, res) {
 
 function getFlow(req, res) {
   const instanceId = req.params.instanceId;
-  const reqParams = { ssinstanceId: instanceId };
+  const reqParams = { ssinstanceid: instanceId };
   cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', reqParams)
     .then((result) => {
       const resp = (result.data === {}) ? '' : result.data;
