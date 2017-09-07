@@ -6,8 +6,8 @@ var users = require('../../controllers/users');
 var services = require('../../controllers/services');
 var config = require('../../config/config');
 var bodyParser = require('body-parser');
-/*var validators = require('../../helpers/validators');
-*/
+var validators = require('../../helpers/validators');
+
 
 var ensureAuthorized = core.middlewares.auth.ensureAuthenticated;
 var jsonParser = bodyParser.json();
@@ -56,6 +56,7 @@ function init(app) {
     baseUrl + '/services/sdn/blockbyport',
     jsonParser,
     ensureAuthorized,
+    validators.blockByPort,
     services.sdn.blockByPort
   );
 

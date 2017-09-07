@@ -84,32 +84,28 @@ function post(url, data) {
   return deferred.promise;
 }
 
-/* function put(arg, auth, url, data) {
-  var client = new Client();
+function put(url, data) {
   var deferred = Q.defer();
-  logger.debug('put url:' + url);
+  logger.debug('url:' + url);
 
-  header['Authorization'] = 'XREST ' + auth;
-  header['X-Requested-With'] = 'XMLHttpRequest';
-  header['Content-Type'] = 'application/json';
-
-  var args = {
-    arg: args,
+  var options = {
+    url: url,
     headers: header,
-    data: data
+    body: JSON.stringify(data)
   };
 
-  logger.debug('update args:' + JSON.stringify(args));
-  logger.debug('update options:' + JSON.stringify(auth));
+  Request.put(options,
+    (error, response, body) => {
+      console.log(error);
+      if (error) {
+        onError(deferred, error);
+      }
+      onData(body, response, deferred);
 
-  client.put(url, args, (data, response) => {
-    onData(data, response, deferred);
-  }).on('error', (err) => {
-    onError(deferred, err);
-  });
+    });
 
   return deferred.promise;
-} */
+}
 
 function onData(data, response, deferred) {
   data = (data instanceof Buffer) ? null : data;
@@ -125,8 +121,8 @@ function onError(deferred, err) {
 
 module.exports = {
   get: get,
-  post: post/*,
-  put: put,
+  post: post,
+  put: put/*,
   remove: remove */
 };
 
