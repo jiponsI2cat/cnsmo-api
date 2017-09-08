@@ -94,7 +94,7 @@ function getFlows(req, res) {
     });
 }
 
-function getFlow(req, res) {
+function getFlowsByNode(req, res) {
   const instanceId = req.params.instanceId;
   const reqParams = { ssinstanceid: instanceId };
   cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', reqParams)
@@ -147,7 +147,7 @@ module.exports = {
   },
   sdn: {
     getFlows: getFlows,
-    getFlowsByNode: getFlow,
+    getFlowsByNode: getFlowsByNode,
     blockByPort: blockByPort
   }
 };
