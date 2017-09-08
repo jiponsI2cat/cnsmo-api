@@ -53,10 +53,10 @@ function init(app) {
   );
 
   app.get(
-    baseUrl + '/services/sdn/flows/:instanceId',
+    baseUrl + '/services/sdn/nodes/:instanceId/flows',
     jsonParser,
     ensureAuthorized,
-    services.sdn.getFlow
+    services.sdn.getFlowsByNode
   );
 
   app.put(
@@ -66,16 +66,6 @@ function init(app) {
     validators.blockByPort,
     services.sdn.blockByPort
   );
-
-  // Test ensureAuthorize
-/*  app.get(
-    baseUrl + '/ensureAuth',
-    jsonParser,
-    ensureAuthorized,
-    function(req, res, next) {
-      res.end();
-    }
-  );*/
 
 }
 

@@ -3,8 +3,6 @@ var core = require('../core');
 var send = core.helpers.send;
 var cnsmoClient = core.helpers.cnsmoClient;
 
-// ==================== START - FW SERVICES ======================= //
-
 /**
  * This configure a client machine by parameters sended via body
  * from requester. The JSON should contain a valid ip and the
@@ -81,8 +79,6 @@ function getNodes(req, res) {
     });
 }
 
-// ==================== END - FW SERVICES ======================= //
-
 function getFlows(req, res) {
   cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', {})
     .then((result) => {
@@ -103,8 +99,15 @@ function getFlow(req, res) {
   const reqParams = { ssinstanceid: instanceId };
   cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', reqParams)
     .then((result) => {
-      const resp = (result.data === {}) ? '' : result.data;
-      return send(res, res.statusCode, resp);
+      var parsedRes = res[Object.keys(result.data)[0]];
+      var blockedPorts = parsedRes.flows.filter((flow) => {
+        if (flow['flow-name'] === 'portweb-drop') {
+          return flow;
+        }
+      }).map((flow) => {
+        return flow.match['tcp-destination-port'];
+      });
+      return send(res, res.statusCode, blockedPorts);
     }).catch((err) => {
       console.log(err);
       const error = {
@@ -144,7 +147,7 @@ module.exports = {
   },
   sdn: {
     getFlows: getFlows,
-    getFlow: getFlow,
+    getFlowsByNode: getFlow,
     blockByPort: blockByPort
   }
 };
