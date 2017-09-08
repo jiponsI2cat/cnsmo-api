@@ -6,8 +6,8 @@ var users = require('../../controllers/users');
 var services = require('../../controllers/services');
 var config = require('../../config/config');
 var bodyParser = require('body-parser');
-/*var validators = require('../../helpers/validators');
-*/
+var validators = require('../../helpers/validators');
+
 
 var ensureAuthorized = core.middlewares.auth.ensureAuthenticated;
 var jsonParser = bodyParser.json();
@@ -45,15 +45,27 @@ function init(app) {
     services.vpn.getNodes
   );
 
-  // Test ensureAuthorize
-/*  app.get(
-    baseUrl + '/ensureAuth',
+  app.get(
+    baseUrl + '/services/sdn/flows',
     jsonParser,
     ensureAuthorized,
-    function(req, res, next) {
-      res.end();
-    }
-  );*/
+    services.sdn.getFlows
+  );
+
+  app.get(
+    baseUrl + '/services/sdn/nodes/:instanceId/flows',
+    jsonParser,
+    ensureAuthorized,
+    services.sdn.getFlowsByNode
+  );
+
+  app.put(
+    baseUrl + '/services/sdn/blockbyport',
+    jsonParser,
+    ensureAuthorized,
+    validators.blockByPort,
+    services.sdn.blockByPort
+  );
 
 }
 
