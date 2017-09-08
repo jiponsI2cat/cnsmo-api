@@ -99,6 +99,9 @@ function getFlowsByNode(req, res) {
   const reqParams = { ssinstanceid: instanceId };
   cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', reqParams)
     .then((result) => {
+      if (result.statusCode === 404) {
+        return send(res, 200, []);
+      }
       var parsedRes = result.data[Object.keys(result.data)[0]];
       var blockedPorts = parsedRes.flows.filter((flow) => {
         if (flow['flow-name'] === 'portweb-drop') {
@@ -108,6 +111,7 @@ function getFlowsByNode(req, res) {
         return flow.match['tcp-destination-port'];
       });
       return send(res, res.statusCode, blockedPorts);
+
     }).catch((err) => {
       console.log(err);
       const error = {
