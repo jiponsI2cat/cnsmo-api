@@ -103,13 +103,15 @@ function getFlowsByNode(req, res) {
         return send(res, 200, []);
       }
       var parsedRes = result.data[Object.keys(result.data)[0]];
-      var blockedPorts = parsedRes.flows.filter((flow) => {
+      console.log(parsedRes, result.data0);
+      
+      var blockedPorts = parsedRes.flows ? parsedRes.flows.filter((flow) => {
         if (flow['flow-name'] === 'portweb-drop') {
           return flow;
         }
       }).map((flow) => {
         return flow.match['tcp-destination-port'];
-      });
+      }) : [];
       return send(res, res.statusCode, blockedPorts);
 
     }).catch((err) => {
