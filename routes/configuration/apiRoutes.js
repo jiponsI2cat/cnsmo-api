@@ -57,6 +57,7 @@ function init(app) {
     jsonParser,
     ensureAuthorized,
     services.sdn.getBlockedTcpPortsByNode
+
   );
 
   app.put(

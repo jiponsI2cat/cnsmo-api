@@ -1,15 +1,15 @@
 'use strict';
 var core = require('../core'),
   Joi = require('joi'),
-  domain = require('../validators/domainL3');
+  services = require('../validators/services');
 
 const send = core.helpers.send;
-const manageJobsSchema = domain.manageJobsSchema;
+const blockByPortSchema = services.blockByPortSchema;
 
-function manageJobs(req, res, next) {
+function blockByPort(req, res, next) {
   const params = req.body;
-  Joi.validate(params, manageJobsSchema,
-    { stripUnknown: true }, (error, value) => {
+  Joi.validate(params, blockByPortSchema,
+    { stripUnknown: false }, (error, value) => {
       if (error) {
         return send(res, error.code || 400,
           { errors: error.details[0].message });
@@ -19,7 +19,7 @@ function manageJobs(req, res, next) {
 }
 
 module.exports = {
-  manageJobs: manageJobs
+  blockByPort: blockByPort,
 };
 
 

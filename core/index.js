@@ -9,9 +9,9 @@ mongoose.Promise = global.Promise;
 
 function start(configData) {
   config.set(configData);
-  if (configData.MONGO_URL) {
+/*   if (configData.MONGO_URL) {
     dbHelper.init(configData.MONGO_URL);
-  }
+  } */
   if (!init) {
     _.assign(module.exports, {
       middlewares: {

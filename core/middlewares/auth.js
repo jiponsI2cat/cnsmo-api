@@ -34,20 +34,16 @@ function ensureAuthenticated(req, res, next) {
   if (!req.headers.authorization) {
     return invalidToken();
   }
-
   var token = req.headers.authorization.split(' ')[1];
-
   try {
     var payload = jwt.decode(token, config.JWT_SECRET);
   } catch (e) {
     logger.error('Error decoding token');
     return invalidToken();
   }
-
   if (payload.exp <= moment().unix()) {
     return invalidToken();
   }
-
   req.credentials = payload.sub;
   next();
 
@@ -55,7 +51,6 @@ function ensureAuthenticated(req, res, next) {
     const error = errors.invalidToken;
     send(res, error.code, { errors: error.txt });
   }
-
 }
 
 module.exports = {

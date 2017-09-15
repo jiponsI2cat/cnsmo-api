@@ -5,8 +5,10 @@ var credentials = core.initParams.credentials;
 var auth = core.middlewares.auth;
 
 /**
- * Function for auth with username and password. it create and return a token
- * after save it in a db
+ * This function provide a token to a requester by validating
+ * its credentials (username and password). The credentials
+ * should match with credentials stored in a init JSON file
+ * generated when current VM is created.
  */
 function authenticate(req, res) {
   const reqCredentials = req.body;

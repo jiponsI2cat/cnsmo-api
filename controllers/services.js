@@ -96,6 +96,7 @@ function getFlows(req, res) {
     });
 }
 function getBlockedTcpPortsByNode(req, res) {
+
   const instanceId = req.params.instanceId;
   const reqParams = { ssinstanceid: instanceId };
   cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', reqParams)
@@ -113,6 +114,8 @@ function getBlockedTcpPortsByNode(req, res) {
       const error = {
         code: 520,
         message: 'The origin server returns something unexpected'
+
+  
       };
       return send(res, error.code, error);
     });
