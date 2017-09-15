@@ -53,10 +53,11 @@ function init(app) {
   );
 
   app.get(
-    baseUrl + '/services/sdn/nodes/:instanceId/flows',
+    baseUrl + '/services/sdn/nodes/:instanceId/blockedTcpPorts',
     jsonParser,
     ensureAuthorized,
-    services.sdn.getFlowsByNode
+    services.sdn.getBlockedTcpPortsByNode
+
   );
 
   app.put(

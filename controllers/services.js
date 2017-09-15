@@ -3,6 +3,8 @@ var core = require('../core');
 var send = core.helpers.send;
 var cnsmoClient = core.helpers.cnsmoClient;
 
+const servicesHelper = require('../helpers/services.js');
+
 /**
  * This configure a client machine by parameters sended via body
  * from requester. The JSON should contain a valid ip and the
@@ -93,32 +95,27 @@ function getFlows(req, res) {
       return send(res, error.code, error);
     });
 }
+function getBlockedTcpPortsByNode(req, res) {
 
-function getFlowsByNode(req, res) {
   const instanceId = req.params.instanceId;
   const reqParams = { ssinstanceid: instanceId };
   cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', reqParams)
     .then((result) => {
       if (result.statusCode === 404) {
-        return send(res, 200, []);
+        const mappedStatusCode = 400;
+        const mappedResponse = servicesHelper.formattedResponses.InvalidNode;
+        return send(res, mappedStatusCode, mappedResponse);
       }
-      var parsedRes = result.data[Object.keys(result.data)[0]];
-      console.log(parsedRes, result.data0);
-      
-      var blockedPorts = parsedRes.flows ? parsedRes.flows.filter((flow) => {
-        if (flow['flow-name'] === 'portweb-drop') {
-          return flow;
-        }
-      }).map((flow) => {
-        return flow.match['tcp-destination-port'];
-      }) : [];
+      var parsedRes = result.data[Object.keys(result.data)[0]].flows;
+      const blockedPorts = servicesHelper.extractBlockedPortsByFlows(parsedRes);
       return send(res, res.statusCode, blockedPorts);
-
-    }).catch((err) => {
+    }, (err) => {
       console.log(err);
       const error = {
-        code: 500,
-        message: 'Error!'
+        code: 520,
+        message: 'The origin server returns something unexpected'
+
+  
       };
       return send(res, error.code, error);
     });
@@ -153,7 +150,7 @@ module.exports = {
   },
   sdn: {
     getFlows: getFlows,
-    getFlowsByNode: getFlowsByNode,
+    getBlockedTcpPortsByNode: getBlockedTcpPortsByNode,
     blockByPort: blockByPort
   }
 };
