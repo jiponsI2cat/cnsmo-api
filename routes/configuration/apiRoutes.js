@@ -1,35 +1,71 @@
 'use strict';
 
-/*var core = require('../../core');
-*/
+var core = require('../../core');
+
 var users = require('../../controllers/users');
+var services = require('../../controllers/services');
 var config = require('../../config/config');
 var bodyParser = require('body-parser');
-/*var validators = require('../../helpers/validators');
-*/
+var validators = require('../../helpers/validators');
 
-/*var ensureAuthorized = core.middlewares.auth.ensureAuthenticated;
-*/var jsonParser = bodyParser.json();
+
+var ensureAuthorized = core.middlewares.auth.ensureAuthenticated;
+var jsonParser = bodyParser.json();
 
 function init(app) {
   const baseUrl = config.BASE_URL;
 
-  // Authenticate
+  // Users
   app.post(
     baseUrl + '/authenticate',
     jsonParser,
     users.authenticate
   );
 
-  // Test ensureAuthorize
-/*  app.get(
-    baseUrl + '/ensureAuth',
+  // Firewall
+  app.post(
+    baseUrl + '/services/fw/rules',
     jsonParser,
     ensureAuthorized,
-    function(req, res, next) {
-      res.end();
-    }
-  );*/
+    services.fw.addRule
+  );
+
+  app.get(
+    baseUrl + '/services/fw/rules',
+    jsonParser,
+    ensureAuthorized,
+    services.fw.getRules
+  );
+
+  //Nodes
+  app.get(
+    baseUrl + '/services/sdn/nodes',
+    jsonParser,
+    ensureAuthorized,
+    services.vpn.getNodes
+  );
+
+  app.get(
+    baseUrl + '/services/sdn/flows',
+    jsonParser,
+    ensureAuthorized,
+    services.sdn.getFlows
+  );
+
+  app.get(
+    baseUrl + '/services/sdn/nodes/:instanceId/blockedTcpPorts',
+    jsonParser,
+    ensureAuthorized,
+    services.sdn.getBlockedTcpPortsByNode
+  );
+
+  app.put(
+    baseUrl + '/services/sdn/blockbyport',
+    jsonParser,
+    ensureAuthorized,
+    validators.blockByPort,
+    services.sdn.blockByPort
+  );
 
 }
 
