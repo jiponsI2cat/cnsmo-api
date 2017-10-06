@@ -138,6 +138,10 @@ function blockByPort(req, res) {
     });
 }
 
+function deleteBlockByPort(req, res) {
+  return send(res, 200, '');
+}
+
 module.exports = {
   fw: {
     addRule: addRule,
@@ -149,6 +153,7 @@ module.exports = {
   sdn: {
     getFlows: getFlows,
     getBlockedTcpPortsByNode: getBlockedTcpPortsByNode,
-    blockByPort: blockByPort
+    blockByPort: blockByPort,
+    deleteBlockByPort: deleteBlockByPort
   }
 };
