@@ -30,12 +30,9 @@ describe('Core', () => {
   describe('/helpers', () => {
     it('should return an empty array if route doesnt exist', (done) => {
       routeCore.getRouteFiles('./routeNotExists', '', (err, res) => {
-        if (err) {
-          done();
-        } else {
-          expect(res).to.be.empty;
-          done();
-        }
+        console.log(expect(res).to.be.empty);
+        expect(res).to.be.empty;
+        done();
       });
     });
   });

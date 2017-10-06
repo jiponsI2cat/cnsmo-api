@@ -17,7 +17,7 @@
             "env": {
                 "NODE_ENV": "development"
             },
-            "externalConsole": false,
+            "console": "integratedTerminal",
             "sourceMaps": false,
             "outDir": null
         },
@@ -34,6 +34,7 @@
             "remoteRoot": null
         },
         {
+            "request": "launch",
 			// Name of configuration; appears in the launch configuration drop down menu.
 			"name": "Run mocha",
 			// Type of configuration. Possible values: "node", "mono".
@@ -48,7 +49,6 @@
 			"cwd": "${workspaceRoot}",
             //"outFiles": [ "${workspaceRoot}/**/*.js" ],            
 			// Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
-			"runtimeExecutable": null,
             "sourceMaps": true,
              "outDir": "${workspaceRoot}",
 			// Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.

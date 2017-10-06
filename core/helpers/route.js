@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash')
-, path = require('path');
+  , path = require('path');
 
 var fileHelper = require('./file');
 
@@ -17,10 +17,10 @@ function getRouteFiles(routesFolder, excludedFiles, cb) {
 function excludeRouteFiles(files, routesFolder, excludedFiles) {
   _.remove(files, function(file) {
     return excludedFiles.indexOf(file) > -1
-    || path.extname(file) !== '.js' ;
+      || path.extname(file) !== '.js';
   });
 
-  files = files.map((file) => {
+  files = files && files.map((file) => {
     return path.join(routesFolder, file);
   });
   return files;

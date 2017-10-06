@@ -114,8 +114,6 @@ function getBlockedTcpPortsByNode(req, res) {
       const error = {
         code: 520,
         message: 'The origin server returns something unexpected'
-
-  
       };
       return send(res, error.code, error);
     });
