@@ -6,19 +6,26 @@ const invalidNode = {
   message: 'Node in the request is invalid'
 };
 
+const flowsArrayHasFlowsWithPortwebDrop = function(flows) {
+  const matchBlockedPort = _.matchesProperty('flow-name', 'portweb-drop');
+  return _.find(flows, matchBlockedPort);
+};
+const flowHasBlockedPort = function(flow) {
+  return flow['flow-name'] === 'portweb-drop';
+};
+const formattedFlow = function(flow) {
+  return {
+    destinationPort: flow.match['tcp-destination-port'],
+    destinationAddress: flow.match['ipv4-destination'],
+    flowId: flow.id
+  };
+};
+
 function extractBlockedPortsByFlows(flows) {
   let blockedPorts = [];
-  var matchBlockedPort = _.matchesProperty('flow-name', 'portweb-drop');
-  if (_.find(flows, matchBlockedPort)) {
-    blockedPorts = flows.filter((flow) => {
-      if (flow['flow-name'] === 'portweb-drop') {
-        return flow;
-      }
-    }).map((flow) => {
-      return {
-        destinationPort: flow.match['tcp-destination-port'],
-        destinationAddress: flow.match['ipv4-destination']
-      };
+  if (flowsArrayHasFlowsWithPortwebDrop) {
+    blockedPorts = flows.filter(flowHasBlockedPort).map((flow) => {
+      return formattedFlow(flow);
     });
   }
   return blockedPorts;
