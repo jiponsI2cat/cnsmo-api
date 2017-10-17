@@ -114,8 +114,6 @@ function getBlockedTcpPortsByNode(req, res) {
       const error = {
         code: 520,
         message: 'The origin server returns something unexpected'
-
-  
       };
       return send(res, error.code, error);
     });
@@ -140,6 +138,10 @@ function blockByPort(req, res) {
     });
 }
 
+function deleteBlockByPort(req, res) {
+  return send(res, 200, '');
+}
+
 module.exports = {
   fw: {
     addRule: addRule,
@@ -151,6 +153,7 @@ module.exports = {
   sdn: {
     getFlows: getFlows,
     getBlockedTcpPortsByNode: getBlockedTcpPortsByNode,
-    blockByPort: blockByPort
+    blockByPort: blockByPort,
+    deleteBlockByPort: deleteBlockByPort
   }
 };
