@@ -70,9 +70,8 @@ function init(app) {
 
   app.delete(
     baseUrl + '/services/sdn/blockbyport/:port',
-    jsonParser,
     ensureAuthorized,
-    services.sdn.deleteblockByPort
+    services.sdn.deleteBlockByPort
   );
 
 }

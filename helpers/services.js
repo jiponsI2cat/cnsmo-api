@@ -23,7 +23,7 @@ const formattedFlow = function(flow) {
 
 function extractBlockedPortsByFlows(flows) {
   let blockedPorts = [];
-  if (flowsArrayHasFlowsWithPortwebDrop) {
+  if (flowsArrayHasFlowsWithPortwebDrop && flows) {
     blockedPorts = flows.filter(flowHasBlockedPort).map((flow) => {
       return formattedFlow(flow);
     });
