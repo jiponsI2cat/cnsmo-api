@@ -68,6 +68,12 @@ function init(app) {
     services.sdn.blockByPort
   );
 
+  app.delete(
+    baseUrl + '/services/sdn/blockbyport/:port',
+    ensureAuthorized,
+    services.sdn.deleteBlockByPort
+  );
+
 }
 
 module.exports = {
