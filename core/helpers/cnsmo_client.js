@@ -33,6 +33,23 @@ function get(url, data) {
   return deferred.promise;
 }
 
+function remove(url) {
+  var client = new Client();
+  var deferred = Q.defer();
+  logger.debug('url:' + url);
+  var args = {
+    headers: header,
+  };
+
+  client.delete(url, args, (response) => {
+    onData(response, deferred);
+  }).on('error', (err) => {
+    onError(deferred, err);
+  });
+
+  return deferred.promise;
+}
+
 /**
  * Client POST method
  * @param {string} url url of server API
@@ -100,8 +117,8 @@ function onError(deferred, err) {
 module.exports = {
   get: get,
   post: post,
-  put: put/*,
-  remove: remove */
+  put: put,
+  delete: remove 
 };
 
 

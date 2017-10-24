@@ -139,7 +139,22 @@ function blockByPort(req, res) {
 }
 
 function deleteBlockByPort(req, res) {
-  return send(res, 200, '');
+  const flowId = req.params.flowId;
+  const instanceId = req.params.instanceId;
+  const deleteBlockByPortUrl = 'http://127.0.0.1:20199/sdn/server/filter/blockbyport/instance/'+instanceId+'/flow/'+flowId;
+  cnsmoClient.delete(deleteBlockByPortUrl)
+    .then((result) => {
+      console.log(result);
+      const response = result.response;
+      return send(res, response.statusCode, '');
+    }).catch((err) => {
+      console.log(err);
+      const error = {
+        code: 500,
+        message: 'Error!'
+      };
+      return send(res, error.code, error);
+    });
 }
 
 module.exports = {

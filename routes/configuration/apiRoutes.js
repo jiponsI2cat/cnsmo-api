@@ -69,7 +69,7 @@ function init(app) {
   );
 
   app.delete(
-    baseUrl + '/services/sdn/blockbyport/:port',
+    baseUrl + '/services/sdn/nodes/:instanceId/flows/:flowId',
     ensureAuthorized,
     services.sdn.deleteBlockByPort
   );
