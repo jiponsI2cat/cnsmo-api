@@ -33,8 +33,6 @@ function get(url, data) {
   return deferred.promise;
 }
 
-
-
 function remove(url) {
   var client = new Client();
   var deferred = Q.defer();
@@ -121,7 +119,8 @@ module.exports = {
   get: get,
   post: post,
   put: put,
-  remove: remove 
+  delete: remove 
+
 };
 
 
