@@ -16,7 +16,6 @@ function addRule(req, res) {
   const bodyReq = req.body;
   cnsmoClient.post('http://127.0.0.1:20095/fw/', bodyReq)
     .then((result) => {
-      console.log(result);
       const response = result.response;
       return send(res, response.statusCode, '');
     }).catch((err) => {

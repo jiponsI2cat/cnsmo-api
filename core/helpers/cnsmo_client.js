@@ -41,14 +41,15 @@ function remove(url) {
     headers: header,
   };
 
-  client.delete(url, args, (response) => {
-    onData(response, deferred);
+  client.delete(url, args, (data, response) => {
+    onData('', response, deferred);
   }).on('error', (err) => {
     onError(deferred, err);
   });
 
   return deferred.promise;
 }
+
 
 /**
  * Client POST method
@@ -119,6 +120,7 @@ module.exports = {
   post: post,
   put: put,
   delete: remove 
+
 };
 
 
