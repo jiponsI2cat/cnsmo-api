@@ -125,8 +125,8 @@ function blockByPort(req, res) {
   cnsmoClient.put(blockByPortUrl, bodyReq)
     .then((result) => {
       console.log(result);
-      const response = result.response;
-      return send(res, response.statusCode, '');
+      const response = {flowId:JSON.parse(result.data).flowID}
+      return send(res, 200, response);
     }).catch((err) => {
       console.log(err);
       const error = {
