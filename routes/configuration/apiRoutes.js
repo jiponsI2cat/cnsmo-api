@@ -4,6 +4,7 @@ var core = require('../../core');
 
 var users = require('../../controllers/users');
 var services = require('../../controllers/services');
+var certs = require('../../controllers/certs');
 var config = require('../../config/config');
 var bodyParser = require('body-parser');
 var validators = require('../../helpers/validators');
@@ -52,6 +53,7 @@ function init(app) {
     services.sdn.getFlows
   );
 
+  // TCP Ports (flows)
   app.get(
     baseUrl + '/services/sdn/nodes/:instanceId/blockedTcpPorts',
     jsonParser,
@@ -73,6 +75,15 @@ function init(app) {
     ensureAuthorized,
     services.sdn.deleteBlockByPort
   );
+  
+  // Certs
+
+  app.post(
+    baseUrl + '/certs/clients/:name',
+    ensureAuthorized,
+    certs.generateCert
+  );
+
 
 }
 
