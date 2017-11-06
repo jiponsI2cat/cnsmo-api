@@ -84,6 +84,12 @@ function init(app) {
     certs.generateCert
   );
 
+  app.get(
+    baseUrl + '/certs/clients/:name',
+    ensureAuthorized,
+    certs.getCert
+  )
+
 
 }
 
