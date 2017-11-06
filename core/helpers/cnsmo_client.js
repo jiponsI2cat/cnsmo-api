@@ -10,6 +10,10 @@ const header = {};
 header['Accept'] = 'application/json';
 header['Content-Type'] = 'application/json';
 
+const acceptText = {};
+acceptText['Accept'] = 'text/html';
+acceptText['Content-Type'] = 'text/html';
+
 /**
  * Client GET method
  * @param {string} url url of server API
@@ -21,6 +25,25 @@ function get(url, data) {
   console.log(data);
   var args = {
     headers: header,
+    data: data
+  };
+
+  client.get(url, args, (data, response) => {
+    onData(data, response, deferred);
+  }).on('error', (err) => {
+    onError(deferred, err);
+  });
+
+  return deferred.promise;
+}
+
+function getText(url, data) {
+  var client = new Client();
+  var deferred = Q.defer();
+  logger.debug('url:' + url);
+  console.log(data);
+  var args = {
+    headers: acceptText,
     data: data
   };
 
@@ -117,10 +140,8 @@ function onError(deferred, err) {
 
 module.exports = {
   get: get,
+  getText: getText,
   post: post,
   put: put,
-  delete: remove 
-
+  delete: remove
 };
-
-
