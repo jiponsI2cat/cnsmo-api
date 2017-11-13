@@ -1,4 +1,5 @@
 'use strict';
+
 var core = require('../core');
 var send = core.helpers.send;
 var cnsmoClient = core.helpers.cnsmoClient;
@@ -94,8 +95,8 @@ function getFlows(req, res) {
       return send(res, error.code, error);
     });
 }
-function getBlockedTcpPortsByNode(req, res) {
 
+function getBlockedTcpPortsByNode(req, res) {
   const instanceId = req.params.instanceId;
   const reqParams = { ssinstanceid: instanceId };
   cnsmoClient.get('http://127.0.0.1:20199/sdn/server/flows/', reqParams)
