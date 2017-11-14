@@ -25,18 +25,18 @@ function generateCert(req, res) {
 
 function getCert(req, res) {
   const name = req.params.name;
-  certs(req, res, `http://127.0.0.1:20093/vpn/configs/certs/client/${name}/`, (res, statusCode, data) => {
-    send(res, statusCode, data);
-  });
+console.log("**************************************************"+name)  
+certs(req, res, `http://127.0.0.1:20093/vpn/configs/certs/client/${name}/`);
 }
 
-function certs(req, res, url, cb) {
-  cnsmoClient
-    .getText(url)
+function certs(req, res, url) {
+console.log(url);  
+cnsmoClient.getText(url)
     .then((result) => {
-      const response = result.response;
+console.log(result)      
+const response = result.response;
       const data = result.data;
-      return cb(res, response.statusCode, {
+      return send(res, response.statusCode, {
         data: data,
         statusCode: response.statusCode
       });
@@ -46,7 +46,31 @@ function certs(req, res, url, cb) {
         code: 500,
         message: 'Error!'
       };
-      return cb(res, error.code, error);
+      return send(res, error.code, error);
+    });
+}
+
+function getCerts(req, res) {
+  const name = req.params.name;
+  cnsmoClient.getText(`http://127.0.0.1:20093/vpn/configs/certs/client/${name}/`)
+    .then((result) => {
+      const response = result.response;
+      const data = result.data;
+      return send(
+        res,
+        response.statusCode, 
+        {
+          data: data,
+          statusCode: response.statusCode
+        }
+      );
+    }).catch((err) => {
+      console.log(err);
+      const error = {
+        code: 500,
+        message: 'Error!'
+      };
+      return send(res, error.code, error);
     });
 }
 
