@@ -81,18 +81,18 @@ function init(app) {
     certs.generateCert
   );
 
-/*  app.get(
+  app.get(
     baseUrl + '/certs/clients/:name/key',
     ensureAuthorized,
     certs.getKey
   );
-*/
+
   app.get(
     baseUrl + '/certs/clients/:name/cert',
     ensureAuthorized,
     certs.getCert
   );
-/*
+
   app.get(
     baseUrl + '/certs/clients/:name/config',
     ensureAuthorized,
@@ -104,8 +104,6 @@ function init(app) {
     ensureAuthorized,
     certs.getCa
   );
-*/
-
 }
 
 module.exports = {
