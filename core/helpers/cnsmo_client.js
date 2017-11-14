@@ -5,10 +5,6 @@ var Q = require('q');
 var logger = log4js.getLogger('CNSMO CLIENT');
 var Client = require('node-rest-client').Client;
 var Request = require('request');
-var StringDecoder = require('string_decoder').StringDecoder;
-var http = require('http');
-var fs    = require('fs');
-var util  = require('util');
 
 const header = {};
 header['Accept'] = 'application/json';
@@ -42,21 +38,18 @@ function get(url, data) {
 }
 
 function getText(url, data) {
-var deferred = Q.defer();
+  var deferred = Q.defer();
 
-Request.get(url, function (error, response, text) {
+  Request.get(url, (error, response, text) => {
     if (!error && response.statusCode == 200) {
-       
-// Continue with your processing here.
-  const parsedText = text;
-  logger.debug('response from cnsmo client ' + parsedText);
-  deferred.resolve({data:parsedText, response: response });
-
-
+      const parsedText = text;
+      logger.debug('response from cnsmo client ' + parsedText);
+      deferred.resolve({ data: parsedText, response: response });
     }
-}).on('error', (err)=>{onError(deferred,err)
-});
-return deferred.promise;
+  }).on('error', (err) => {
+    onError(deferred, err);
+  });
+  return deferred.promise;
 }
 
 
