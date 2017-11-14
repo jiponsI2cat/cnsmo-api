@@ -39,7 +39,7 @@ function getCa(req, res) {
 
 function getConfig(req, res) {
   const name = req.params.name;
-  certs(req, res, `http://127.0.0.1:20093/vpn/configs/client/client/${name}`);
+  certs(req, res, `http://127.0.0.1:20093/vpn/configs/client/${name}`);
 }
 
 function certs(req, res, url) {
