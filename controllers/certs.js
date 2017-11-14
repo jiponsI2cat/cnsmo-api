@@ -23,20 +23,21 @@ function generateCert(req, res) {
     });
 }
 
-function getCerts(req, res) {
+function getCert(req, res) {
   const name = req.params.name;
-  cnsmoClient.getText(`http://127.0.0.1:20093/vpn/configs/certs/client/${name}/`)
+  certs(req, res, `http://127.0.0.1:20093/vpn/configs/certs/client/${name}/`);
+}
+
+function certs(req, res, url) {
+  cnsmoClient
+    .getText(url)
     .then((result) => {
       const response = result.response;
       const data = result.data;
-      return send(
-        res,
-        response.statusCode, 
-        {
-          data: data,
-          statusCode: response.statusCode
-        }
-      );
+      return send(res, response.statusCode, {
+        data: data,
+        statusCode: response.statusCode
+      });
     }).catch((err) => {
       console.log(err);
       const error = {
@@ -49,6 +50,6 @@ function getCerts(req, res) {
 
 module.exports = {
   generateCert: generateCert,
-  getCerts: getCerts
+  getCert: getCert
 };
 

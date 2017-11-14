@@ -5,10 +5,6 @@ var Q = require('q');
 var logger = log4js.getLogger('CNSMO CLIENT');
 var Client = require('node-rest-client').Client;
 var Request = require('request');
-var StringDecoder = require('string_decoder').StringDecoder;
-var http = require('http');
-var fs    = require('fs');
-var util  = require('util');
 
 const header = {};
 header['Accept'] = 'application/json';
@@ -42,16 +38,38 @@ function get(url, data) {
 }
 
 function getText(url, data) {
+  var client = new Client();
   var deferred = Q.defer();
-  Request.get(url, function (error, response, text) {
-    if (!error && response.statusCode == 200) {
-      const parsedText = text;
-      logger.debug('response from cnsmo client ' + parsedText);
-      deferred.resolve({data:parsedText, response: response });
-    }
-  }).on('error', (err)=>{
-    onError(deferred,err);
+  logger.debug('url:' + url);
+  console.log(data);
+  var args = {
+    headers: acceptText,
+    data: data
+  };
+
+  client.get(url, args, (data, response) => {
+    onData(data, response, deferred);
+  }).on('error', (err) => {
+    onError(deferred, err);
   });
+
+  return deferred.promise;
+}
+
+function remove(url) {
+  var client = new Client();
+  var deferred = Q.defer();
+  logger.debug('url:' + url);
+  var args = {
+    headers: header,
+  };
+
+  client.delete(url, args, (data, response) => {
+    onData('', response, deferred);
+  }).on('error', (err) => {
+    onError(deferred, err);
+  });
+
   return deferred.promise;
 }
 
@@ -120,27 +138,10 @@ function onError(deferred, err) {
   deferred.reject(err);
 }
 
-function remove(url) {
-  var client = new Client();
-  var deferred = Q.defer();
-  logger.debug('url:' + url);
-  var args = {
-    headers: header,
-  };
-
-  client.delete(url, args, (data, response) => {
-    onData('', response, deferred);
-  }).on('error', (err) => {
-    onError(deferred, err);
-  });
-
-  return deferred.promise;
-}
-
 module.exports = {
   get: get,
   getText: getText,
   post: post,
   put: put,
-  delete: remove,
+  delete: remove
 };

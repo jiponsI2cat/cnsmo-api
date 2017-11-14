@@ -1,14 +1,12 @@
 'use strict';
 
 var core = require('../../core');
-
 var users = require('../../controllers/users');
 var services = require('../../controllers/services');
 var certs = require('../../controllers/certs');
 var config = require('../../config/config');
 var bodyParser = require('body-parser');
 var validators = require('../../helpers/validators');
-
 
 var ensureAuthorized = core.middlewares.auth.ensureAuthenticated;
 var jsonParser = bodyParser.json();
@@ -75,7 +73,7 @@ function init(app) {
     ensureAuthorized,
     services.sdn.deleteBlockByPort
   );
-  
+
   // Certs
   app.post(
     baseUrl + '/certs/clients/:name',
@@ -84,10 +82,28 @@ function init(app) {
   );
 
   app.get(
-    baseUrl + '/certs/clients/:name',
+    baseUrl + '/certs/clients/:name/key',
     ensureAuthorized,
-    certs.getCerts
-  )
+    certs.getKey
+  );
+
+  app.get(
+    baseUrl + '/certs/clients/:name/cert',
+    ensureAuthorized,
+    certs.getCert
+  );
+
+  app.get(
+    baseUrl + '/certs/clients/:name/config',
+    ensureAuthorized,
+    certs.getConfig
+  );
+
+  app.get(
+    baseUrl + '/certs/clients/:name/ca',
+    ensureAuthorized,
+    certs.getCa
+  );
 
 
 }
