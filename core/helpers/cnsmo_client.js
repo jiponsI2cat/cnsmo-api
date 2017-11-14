@@ -42,22 +42,17 @@ function get(url, data) {
 }
 
 function getText(url, data) {
-var deferred = Q.defer();
-
-Request.get(url, function (error, response, text) {
+  var deferred = Q.defer();
+  Request.get(url, function (error, response, text) {
     if (!error && response.statusCode == 200) {
-       
-console.log(text)        
-// Continue with your processing here.
-  const parsedText = JSON.stringify(text);
-  logger.debug('response from cnsmo client ' + parsedText);
-  deferred.resolve({data:parsedText, response: response });
-
-
+      const parsedText = text;
+      logger.debug('response from cnsmo client ' + parsedText);
+      deferred.resolve({data:parsedText, response: response });
     }
-}).on('error', (err)=>{onError(deferred,err)
-});
-return deferred.promise;
+  }).on('error', (err)=>{
+    onError(deferred,err);
+  });
+  return deferred.promise;
 }
 
 

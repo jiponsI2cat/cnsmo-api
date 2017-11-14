@@ -77,7 +77,6 @@ function init(app) {
   );
   
   // Certs
-
   app.post(
     baseUrl + '/certs/clients/:name',
     ensureAuthorized,
@@ -87,7 +86,7 @@ function init(app) {
   app.get(
     baseUrl + '/certs/clients/:name',
     ensureAuthorized,
-    certs.getCert
+    certs.getCerts
   )
 
 
