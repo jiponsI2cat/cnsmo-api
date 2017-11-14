@@ -25,16 +25,18 @@ function generateCert(req, res) {
 
 function getCert(req, res) {
   const name = req.params.name;
-  certs(req, res, `http://127.0.0.1:20093/vpn/configs/certs/client/${name}/`);
+  certs(req, res, `http://127.0.0.1:20093/vpn/configs/certs/client/${name}/`, (res, statusCode, data) => {
+    send(res, statusCode, data);
+  });
 }
 
-function certs(req, res, url) {
+function certs(req, res, url, cb) {
   cnsmoClient
     .getText(url)
     .then((result) => {
       const response = result.response;
       const data = result.data;
-      return send(res, response.statusCode, {
+      return cb(res, response.statusCode, {
         data: data,
         statusCode: response.statusCode
       });
@@ -44,7 +46,7 @@ function certs(req, res, url) {
         code: 500,
         message: 'Error!'
       };
-      return send(res, error.code, error);
+      return cb(res, error.code, error);
     });
 }
 
