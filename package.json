@@ -4,9 +4,11 @@
   "dependencies": {
     "async-rollback": "0.0.1",
     "body-parser": "~1.16.0",
+    "cnsmo_web": "git+https://github.com/wfriscina/cnsmo-web.git",
     "cors": "~2.8.1",
     "deasync": "^0.1.9",
     "express": "4.x",
+    "http": "0.0.0",
     "istanbul": "^0.4.5",
     "joi": "^10.3.0",
     "jsonwebtoken": "^7.2.1",
@@ -18,8 +20,8 @@
     "node-rest-client": "2.0.1",
     "q": "1.4.1",
     "request": "^2.79.0",
-    "swagger-express": "latest",
-    "cnsmo_web": "git+https://github.com/wfriscina/cnsmo-web.git"
+    "string_decoder": "^1.0.3",
+    "swagger-express": "latest"
   },
   "engines": {
     "node": ">=0.10.0"
