@@ -10,6 +10,10 @@ const header = {};
 header['Accept'] = 'application/json';
 header['Content-Type'] = 'application/json';
 
+const acceptText = {};
+acceptText['Accept'] = 'text/html';
+acceptText['Content-Type'] = 'text/html';
+
 /**
  * Client GET method
  * @param {string} url url of server API
@@ -33,20 +37,18 @@ function get(url, data) {
   return deferred.promise;
 }
 
-function remove(url) {
-  var client = new Client();
+function getText(url, data) {
   var deferred = Q.defer();
-  logger.debug('url:' + url);
-  var args = {
-    headers: header,
-  };
 
-  client.delete(url, args, (data, response) => {
-    onData('', response, deferred);
+  Request.get(url, (error, response, text) => {
+    if (!error && response.statusCode == 200) {
+      const parsedText = text;
+      logger.debug('response from cnsmo client ' + parsedText);
+      deferred.resolve({ data: parsedText, response: response });
+    }
   }).on('error', (err) => {
     onError(deferred, err);
   });
-
   return deferred.promise;
 }
 
@@ -115,12 +117,27 @@ function onError(deferred, err) {
   deferred.reject(err);
 }
 
+function remove(url) {
+  var client = new Client();
+  var deferred = Q.defer();
+  logger.debug('url:' + url);
+  var args = {
+    headers: header,
+  };
+
+  client.delete(url, args, (data, response) => {
+    onData('', response, deferred);
+  }).on('error', (err) => {
+    onError(deferred, err);
+  });
+
+  return deferred.promise;
+}
+
 module.exports = {
   get: get,
+  getText: getText,
   post: post,
   put: put,
-  delete: remove 
-
+  delete: remove,
 };
-
-
