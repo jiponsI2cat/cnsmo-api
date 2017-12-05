@@ -4,6 +4,7 @@ var core = require('../../core');
 var users = require('../../controllers/users');
 var services = require('../../controllers/services');
 var certs = require('../../controllers/certs');
+var dnsRecords = require('../../controllers/dnsRecords');
 var config = require('../../config/config');
 var bodyParser = require('body-parser');
 var validators = require('../../helpers/validators');
@@ -103,6 +104,13 @@ function init(app) {
     baseUrl + '/certs/clients/:name/ca',
     ensureAuthorized,
     certs.getCa
+  );
+
+  app.post(
+    baseUrl + '/dns/records',
+    jsonParser,
+    ensureAuthorized,
+    dnsRecords.addDnsRecord
   );
 }
 
