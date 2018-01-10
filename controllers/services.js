@@ -126,7 +126,7 @@ function blockByPort(req, res) {
   cnsmoClient.put(blockByPortUrl, bodyReq)
     .then((result) => {
       console.log(result);
-      const response = {flowId:JSON.parse(result.data).flowID}
+      const response = { flowId: JSON.parse(result.data).flowID }
       return send(res, 200, response);
     }).catch((err) => {
       console.log(err);
@@ -141,12 +141,52 @@ function blockByPort(req, res) {
 function deleteBlockByPort(req, res) {
   const flowId = req.params.flowId;
   const instanceId = req.params.instanceId;
-  const deleteBlockByPortUrl = 'http://127.0.0.1:20199/sdn/server/filter/blockbyport/instance/'+instanceId+'/flow/'+flowId;
+  const deleteBlockByPortUrl = 'http://127.0.0.1:20199/sdn/server/' +
+    'filter/blockbyport/instance/' + instanceId + '/flow/' + flowId;
   cnsmoClient.delete(deleteBlockByPortUrl)
     .then((result) => {
       console.log(result);
       const response = result.response;
       return send(res, response.statusCode, '');
+    }).catch((err) => {
+      console.log(err);
+      const error = {
+        code: 500,
+        message: 'Error!'
+      };
+      return send(res, error.code, error);
+    });
+}
+
+function getRecords(req, res) {
+  cnsmoClient.get('http://127.0.0.1:20200/dns/server/record/')
+    .then((result) => {
+      return send(res,
+        res.statusCode,
+        result.data)
+    }, (err) => {
+      console.log(err);
+      const error = {
+        code: 520,
+        message: 'The origin server returns something unexpected'
+      };
+      return send(res, error.code, error);
+    });
+}
+
+function addRecord(req, res) {
+  const bodyReq = req.body;
+  cnsmoClient.post('http://127.0.0.1:20200/dns/server/record/', bodyReq)
+    .then((result) => {
+      const response = result.response;
+      return send(res, response.statusCode, '');
+    }, (err) => {
+      console.log(err);
+      const error = {
+        code: 520,
+        message: 'The origin server returns something unexpected'
+      };
+      return send(res, error.code, error);
     }).catch((err) => {
       console.log(err);
       const error = {
@@ -170,5 +210,9 @@ module.exports = {
     getBlockedTcpPortsByNode: getBlockedTcpPortsByNode,
     blockByPort: blockByPort,
     deleteBlockByPort: deleteBlockByPort
+  },
+  dns: {
+    getRecords: getRecords,
+    addRecord: addRecord
   }
 };
