@@ -104,6 +104,22 @@ function init(app) {
     ensureAuthorized,
     certs.getCa
   );
+
+  //DNS
+  app.get(
+    baseUrl + '/services/dns/records',
+    ensureAuthorized,
+    services.dns.getRecords
+  );
+
+  app.post(
+    baseUrl + '/services/dns/record',
+    jsonParser,
+    ensureAuthorized,
+    /*validate*/
+    services.dns.addRecord
+  );
+
 }
 
 module.exports = {
