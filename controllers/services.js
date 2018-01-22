@@ -96,6 +96,21 @@ function getFlows(req, res) {
     });
 }
 
+function monitoring(req, res) {
+  cnsmoClient.get('http://127.0.0.1:20199/sdn/server/filter/blockbyport/instance/Client.1/flow/12/statistics', {})
+    .then((result) => {
+      const resp = (result.data === {}) ? '' : result.data;
+      return send(res, res.statusCode, resp);
+    }).catch((err) => {
+      console.log(err);
+      const error = {
+        code: 500,
+        message: 'Error!'
+      };
+      return send(res, error.code, error);
+    });
+}
+
 function getBlockedTcpPortsByNode(req, res) {
   const instanceId = req.params.instanceId;
   const reqParams = { ssinstanceid: instanceId };
@@ -209,7 +224,8 @@ module.exports = {
     getFlows: getFlows,
     getBlockedTcpPortsByNode: getBlockedTcpPortsByNode,
     blockByPort: blockByPort,
-    deleteBlockByPort: deleteBlockByPort
+    deleteBlockByPort: deleteBlockByPort,
+    monitoring: monitoring
   },
   dns: {
     getRecords: getRecords,
