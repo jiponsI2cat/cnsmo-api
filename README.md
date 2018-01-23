@@ -61,6 +61,10 @@ Deletes a flow that contains a blocked port
 >*method*: DELETE,
 *url*: '/services/sdn/nodes/:instanceId/flows/:flowId'
 
+Provides statistics of client's flows
+
+>*method*: GET,
+*url*: '/services/sdn/nodes/:instanceId/flows/:flowId/monitoring',
 
 ----------
 
