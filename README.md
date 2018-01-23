@@ -4,28 +4,37 @@ This is an API which allows administrators to perform modifications and other op
 ## API Methods
 
 **Users**
-*method* POST 
-*url*: '/authenticate',  *body params*: { username, password } 
+
+// Authentication of user by credentials
+
+*method*: POST, *url*: '/authenticate', *body params*: { username, password };
 
 
 ----------
 
 
 **Firewall**
-*method* POST,
-*url*: '/services/fw/rules', 
-*body params*: { direction, protocol, dst_port, dst_src, ip_range, action }
 
-*method* GET, 
-*url*: '/services/fw/rules';
+// Adds new firewall rule to a list of rules
+
+*method*: POST, *url*: '/services/fw/rules', *body params*: { direction, protocol, dst_port, dst_src, ip_range, action };
+
+// Gets list of firewall rules
+
+*method*: GET, *url*: '/services/fw/rules';
 
 
 ----------
 
 
 **Nodes**
-*method* GET 
+
+// Gets list of nodes (clients)
+
+*method*: GET 
 *url*: '/services/sdn/nodes';
+
+// Gets list of flows 
 
 method: GET,
 *url*: '/services/sdn/flows',
@@ -35,13 +44,20 @@ method: GET,
 
 
 **TCP Ports**
-*method* GET
+
+// Gets list of blocked TCP ports of a node (client)
+
+*method*: GET
 *url*: '/services/sdn/nodes/:instanceId/blockedTcpPorts',
 
-*method* PUT
+// Block a port 
+
+*method*: PUT
 *url*: '/services/sdn/blockbyport',
 
-*method* DELETE
+// Deletes a flow that contains a blocked port
+
+*method*: DELETE
 *url*: '/services/sdn/nodes/:instanceId/flows/:flowId',
 
 
@@ -49,19 +65,20 @@ method: GET,
 
 
 **Certs**
-*method* POST
+
+*method*: POST
 *url*: '/certs/clients/:name',
 
-*method* GET
+*method*: GET
 *url*: '/certs/clients/:name/key',
 
-*method* GET
+*method*: GET
 *url*: '/certs/clients/:name/cert',
 
-*method* GET
+*method*: GET
 *url*: '/certs/clients/:name/config',
 
-*method* GET
+*method*: GET
 *url*: '/certs/clients/:name/ca',
 
 
@@ -69,8 +86,9 @@ method: GET,
 
 
 **DNS**
-*method* GET
+
+*method*: GET
 *url*: '/services/dns/records',
 
-*method* POST
+*method*: POST
 *url*: '/services/dns/record',
