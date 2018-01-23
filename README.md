@@ -66,17 +66,27 @@ method: GET,
 
 **Certs**
 
+// Generate all the certificates of the new client by its name
+
 *method*: POST
 *url*: '/certs/clients/:name',
+
+// Gets the key cert
 
 *method*: GET
 *url*: '/certs/clients/:name/key',
 
+// Gets the client cert
+
 *method*: GET
 *url*: '/certs/clients/:name/cert',
 
+// Gets the config cert
+
 *method*: GET
 *url*: '/certs/clients/:name/config',
+
+// Gets ca cert
 
 *method*: GET
 *url*: '/certs/clients/:name/ca',
@@ -87,8 +97,12 @@ method: GET,
 
 **DNS**
 
+// Gets list of dns records
+
 *method*: GET
 *url*: '/services/dns/records',
+
+// Gets a dns record
 
 *method*: POST
 *url*: '/services/dns/record',
