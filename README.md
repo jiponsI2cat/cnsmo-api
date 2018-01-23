@@ -67,7 +67,7 @@ Deletes a flow that contains a blocked port
 
 **Certs**
 
-Generate all the certificates of the new client by its name
+Generates all the certificates of the new client by its name
 
 >*method*: POST,
 *url*: '/certs/clients/:name'
