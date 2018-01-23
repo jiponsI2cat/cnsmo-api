@@ -5,7 +5,7 @@ This is an API which allows administrators to perform modifications and other op
 
 **Users**
 
-// Authentication of user by credentials
+// Authentication of user by credentials*****
 
 *method*: POST, *url*: '/authenticate', *body params*: { username, password };
 
@@ -18,6 +18,7 @@ This is an API which allows administrators to perform modifications and other op
 // Adds new firewall rule to a list of rules
 
 *method*: POST, *url*: '/services/fw/rules', *body params*: { direction, protocol, dst_port, dst_src, ip_range, action };
+
 
 // Gets list of firewall rules
 
