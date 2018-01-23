@@ -5,7 +5,7 @@ This is an API which allows administrators to perform modifications and other op
 
 **Users**
 
-// Authentication of user by credentials
+Authentication of user by credentials
 
 >*method*: POST, *url*: '/authenticate', *body params*: { username, password };
 
@@ -15,12 +15,12 @@ This is an API which allows administrators to perform modifications and other op
 
 **Firewall**
 
-// Adds new firewall rule to a list of rules
+Adds new firewall rule to a list of rules
 
 >*method*: POST, *url*: '/services/fw/rules', *body params*: { direction, protocol, dst_port, dst_src, ip_range, action };
 
 
-// Gets list of firewall rules
+Gets list of firewall rules
 
 >*method*: GET, *url*: '/services/fw/rules';
 
@@ -30,12 +30,12 @@ This is an API which allows administrators to perform modifications and other op
 
 **Nodes**
 
-// Gets list of nodes (clients)
+Gets list of nodes (clients)
 
 >*method*: GET 
 *url*: '/services/sdn/nodes';
 
-// Gets list of flows 
+Gets list of flows 
 
 >method: GET,
 *url*: '/services/sdn/flows',
@@ -46,17 +46,17 @@ This is an API which allows administrators to perform modifications and other op
 
 **TCP Ports**
 
-// Gets list of blocked TCP ports of a node (client)
+Gets list of blocked TCP ports of a node (client)
 
 >*method*: GET
 *url*: '/services/sdn/nodes/:instanceId/blockedTcpPorts',
 
-// Block a port 
+Block a port 
 
 >*method*: PUT
 *url*: '/services/sdn/blockbyport',
 
-// Deletes a flow that contains a blocked port
+Deletes a flow that contains a blocked port
 
 >*method*: DELETE
 *url*: '/services/sdn/nodes/:instanceId/flows/:flowId',
@@ -67,27 +67,27 @@ This is an API which allows administrators to perform modifications and other op
 
 **Certs**
 
-// Generate all the certificates of the new client by its name
+Generate all the certificates of the new client by its name
 
 >*method*: POST
 *url*: '/certs/clients/:name',
 
-// Gets the key cert
+Gets the key cert
 
 >*method*: GET
 *url*: '/certs/clients/:name/key',
 
-// Gets the client cert
+Gets the client cert
 
 >*method*: GET
 *url*: '/certs/clients/:name/cert',
 
-// Gets the config cert
+Gets the config cert
 
 >*method*: GET
 *url*: '/certs/clients/:name/config',
 
-// Gets ca cert
+Gets ca cert
 
 >*method*: GET
 *url*: '/certs/clients/:name/ca',
@@ -98,12 +98,12 @@ This is an API which allows administrators to perform modifications and other op
 
 **DNS**
 
-// Gets list of dns records
+Gets list of dns records
 
 >*method*: GET
 *url*: '/services/dns/records',
 
-// Gets a dns record
+Gets a dns record
 
 >*method*: POST
 *url*: '/services/dns/record',
