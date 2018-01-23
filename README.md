@@ -7,7 +7,7 @@ This is an API which allows administrators to perform modifications and other op
 
 Authentication of user by credentials
 
->*method*: POST, *url*: '/authenticate', *body params*: { username, password };
+>*method*: POST, *url*: '/authenticate', *body params*: { username, password }
 
 
 ----------
@@ -17,12 +17,12 @@ Authentication of user by credentials
 
 Adds new firewall rule to a list of rules
 
->*method*: POST, *url*: '/services/fw/rules', *body params*: { direction, protocol, dst_port, dst_src, ip_range, action };
+>*method*: POST, *url*: '/services/fw/rules', *body params*: { direction, protocol, dst_port, dst_src, ip_range, action }
 
 
 Gets list of firewall rules
 
->*method*: GET, *url*: '/services/fw/rules';
+>*method*: GET, *url*: '/services/fw/rules'
 
 
 ----------
@@ -33,12 +33,12 @@ Gets list of firewall rules
 Gets list of nodes (clients)
 
 >*method*: GET 
-*url*: '/services/sdn/nodes';
+*url*: '/services/sdn/nodes'
 
 Gets list of flows 
 
 >method: GET,
-*url*: '/services/sdn/flows',
+*url*: '/services/sdn/flows'
 
 
 ----------
@@ -49,17 +49,17 @@ Gets list of flows
 Gets list of blocked TCP ports of a node (client)
 
 >*method*: GET
-*url*: '/services/sdn/nodes/:instanceId/blockedTcpPorts',
+*url*: '/services/sdn/nodes/:instanceId/blockedTcpPorts'
 
 Block a port 
 
 >*method*: PUT
-*url*: '/services/sdn/blockbyport',
+*url*: '/services/sdn/blockbyport'
 
 Deletes a flow that contains a blocked port
 
 >*method*: DELETE
-*url*: '/services/sdn/nodes/:instanceId/flows/:flowId',
+*url*: '/services/sdn/nodes/:instanceId/flows/:flowId'
 
 
 ----------
@@ -70,27 +70,27 @@ Deletes a flow that contains a blocked port
 Generate all the certificates of the new client by its name
 
 >*method*: POST
-*url*: '/certs/clients/:name',
+*url*: '/certs/clients/:name'
 
 Gets the key cert
 
 >*method*: GET
-*url*: '/certs/clients/:name/key',
+*url*: '/certs/clients/:name/key'
 
 Gets the client cert
 
 >*method*: GET
-*url*: '/certs/clients/:name/cert',
+*url*: '/certs/clients/:name/cert'
 
 Gets the config cert
 
 >*method*: GET
-*url*: '/certs/clients/:name/config',
+*url*: '/certs/clients/:name/config'
 
 Gets ca cert
 
 >*method*: GET
-*url*: '/certs/clients/:name/ca',
+*url*: '/certs/clients/:name/ca'
 
 
 ----------
@@ -101,9 +101,9 @@ Gets ca cert
 Gets list of dns records
 
 >*method*: GET
-*url*: '/services/dns/records',
+*url*: '/services/dns/records'
 
 Gets a dns record
 
 >*method*: POST
-*url*: '/services/dns/record',
+*url*: '/services/dns/record'
