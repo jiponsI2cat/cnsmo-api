@@ -112,3 +112,4 @@ Gets a dns record
 
 >*method*: POST,
 *url*: '/services/dns/record'
+*body params*: { dnsrecords: < list of string "$ip $clientName" > }
