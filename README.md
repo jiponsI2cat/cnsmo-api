@@ -32,7 +32,7 @@ Gets list of firewall rules
 
 Gets list of nodes (clients)
 
->*method*: GET 
+>*method*: GET,
 *url*: '/services/sdn/nodes'
 
 Gets list of flows 
@@ -48,17 +48,17 @@ Gets list of flows
 
 Gets list of blocked TCP ports of a node (client)
 
->*method*: GET
+>*method*: GET,
 *url*: '/services/sdn/nodes/:instanceId/blockedTcpPorts'
 
 Block a port 
 
->*method*: PUT
+>*method*: PUT,
 *url*: '/services/sdn/blockbyport'
 
 Deletes a flow that contains a blocked port
 
->*method*: DELETE
+>*method*: DELETE,
 *url*: '/services/sdn/nodes/:instanceId/flows/:flowId'
 
 
@@ -69,27 +69,27 @@ Deletes a flow that contains a blocked port
 
 Generate all the certificates of the new client by its name
 
->*method*: POST
+>*method*: POST,
 *url*: '/certs/clients/:name'
 
 Gets the key cert
 
->*method*: GET
+>*method*: GET,
 *url*: '/certs/clients/:name/key'
 
 Gets the client cert
 
->*method*: GET
+>*method*: GET,
 *url*: '/certs/clients/:name/cert'
 
 Gets the config cert
 
->*method*: GET
+>*method*: GET,
 *url*: '/certs/clients/:name/config'
 
 Gets ca cert
 
->*method*: GET
+>*method*: GET,
 *url*: '/certs/clients/:name/ca'
 
 
@@ -100,10 +100,10 @@ Gets ca cert
 
 Gets list of dns records
 
->*method*: GET
+>*method*: GET,
 *url*: '/services/dns/records'
 
 Gets a dns record
 
->*method*: POST
+>*method*: POST,
 *url*: '/services/dns/record'
