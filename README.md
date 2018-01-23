@@ -17,7 +17,7 @@ Authentication of user by credentials
 
 Adds new firewall rule to a list of rules
 
->*method*: POST, *url*: '/services/fw/rules', *body params*: { direction:<"in"/"out">, protocol:<"tcp/"udp"/...>, dst_port:<destination port>, dst_src:<"dst"/"src">, ip_range, action:<"acpt"/"rjct"> }
+>*method*: POST, *url*: '/services/fw/rules', *body params*: { direction: < "in"/"out" >, protocol: < "tcp/"udp"/... >, dst_port: < destination port >, dst_src: < "dst"/"src" >, ip_range: < "$IP/$CIDR_mask" >, action:< "acpt"/"rjct" > }
 
 
 Gets list of firewall rules (Actually mocked)
