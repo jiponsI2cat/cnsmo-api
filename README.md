@@ -17,7 +17,7 @@ Authentication of user by credentials
 
 Adds new firewall rule to a list of rules
 
->*method*: POST, *url*: '/services/fw/rules', *body params*: { direction: < "in"/"out" >, protocol: < "tcp/"udp"/... >, dst_port: < destination port >, dst_src: < "dst"/"src" >, ip_range: < "$IP/$CIDR_mask" >, action:< "acpt"/"rjct" > }
+>*method*: POST, *url*: '/services/fw/rules', *body params*: { direction: < "in"/"out" >, protocol: < "tcp/"udp"/... >, dst_port: < destination port >, dst_src: < "dst"/"src" >, ip_range: < "$ip/$CIDRMask" >, action:< "acpt"/"rjct" > }
 
 
 Gets list of firewall rules (Actually mocked)
@@ -54,7 +54,8 @@ Gets list of blocked TCP ports of a node (client)
 Block a port 
 
 >*method*: PUT,
-*url*: '/services/sdn/blockbyport'
+*url*: '/services/sdn/blockbyport',
+*body params*: { tcp-destination-port: <destinationPort>, ip4-destination: <$ipDestination/$CIDRMask>,  ssinstanceid: <instanceId> }
 
 Deletes a flow that contains a blocked port
 
