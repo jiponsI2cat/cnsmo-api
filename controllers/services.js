@@ -97,9 +97,12 @@ function getFlows(req, res) {
 }
 
 function monitoring(req, res) {
-  cnsmoClient.get('http://127.0.0.1:20199/sdn/server/filter/blockbyport/instance/Client.1/flow/12/statistics', {})
+  const params = req.params;
+  const prefixUrl = 'http://127.0.0.1:20199/sdn/server/filter/blockbyport/instance/';
+  const url = `${prefixUrl}${params.instanceId}/flow/${params.flowId}/statistics`;
+  cnsmoClient.get(url, {})
     .then((result) => {
-      const resp = (result.data === {}) ? '' : result.data;
+      const resp = (result.data === {}) ? '' : { numPackets: result.data["num-packets"]};
       return send(res, res.statusCode, resp);
     }).catch((err) => {
       console.log(err);
