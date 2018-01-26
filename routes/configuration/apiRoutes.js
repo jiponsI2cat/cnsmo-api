@@ -60,6 +60,14 @@ function init(app) {
 
   );
 
+  app.get(
+    baseUrl + '/services/sdn/nodes/:instanceId/flows/:flowId/monitoring',
+    jsonParser,
+    ensureAuthorized,
+    services.sdn.monitoring
+
+  );
+
   app.put(
     baseUrl + '/services/sdn/blockbyport',
     jsonParser,
