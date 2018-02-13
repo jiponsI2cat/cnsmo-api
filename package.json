@@ -4,7 +4,7 @@
   "dependencies": {
     "async-rollback": "0.0.1",
     "body-parser": "~1.16.0",
-    "cnsmo_web": "git+https://github.com/wfriscina/cnsmo-web.git",
+    "cnsmo_web": "git+https://github.com/jiponsI2cat/cnsmo-gui.git",
     "cors": "~2.8.1",
     "deasync": "^0.1.9",
     "express": "4.x",
