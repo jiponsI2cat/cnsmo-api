@@ -102,7 +102,25 @@ function monitoring(req, res) {
   const url = `${prefixUrl}${params.instanceId}/flow/${params.flowId}/statistics`;
   cnsmoClient.get(url, {})
     .then((result) => {
-      const resp = (result.data === {}) ? '' : { numPackets: result.data["num-packets"]};
+      const resp = (result.data === {}) ? '' : { numPackets: result.data["num-packets"] };
+      return send(res, res.statusCode, resp);
+    }).catch((err) => {
+      console.log(err);
+      const error = {
+        code: 500,
+        message: 'Error!'
+      };
+      return send(res, error.code, error);
+    });
+}
+
+function monitoringIncoming(req, res) {
+  const params = req.params;
+  const prefixUrl = 'http://127.0.0.1:20199/sdn/server/monitor/instance/';
+  const url = `${prefixUrl}${params.instanceId}/statistics`;
+  cnsmoClient.get(url, {})
+    .then((result) => {
+      const resp = (result.data === {}) ? '' : { inTraffic: result.data["IN traffic"], outTraffic: result.data["OUT traffic"] };
       return send(res, res.statusCode, resp);
     }).catch((err) => {
       console.log(err);
@@ -228,7 +246,8 @@ module.exports = {
     getBlockedTcpPortsByNode: getBlockedTcpPortsByNode,
     blockByPort: blockByPort,
     deleteBlockByPort: deleteBlockByPort,
-    monitoring: monitoring
+    monitoring: monitoring,
+    monitoringIncoming: monitoringIncoming
   },
   dns: {
     getRecords: getRecords,

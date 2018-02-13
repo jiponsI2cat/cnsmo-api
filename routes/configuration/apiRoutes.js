@@ -65,7 +65,13 @@ function init(app) {
     jsonParser,
     ensureAuthorized,
     services.sdn.monitoring
+  );
 
+  app.get(
+    baseUrl + '/services/sdn/nodes/:instanceId/monitoring/incoming',
+    jsonParser,
+    ensureAuthorized,
+    services.sdn.monitoringIncoming
   );
 
   app.put(
