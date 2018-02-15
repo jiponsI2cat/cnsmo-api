@@ -98,7 +98,7 @@ function getFlows(req, res) {
 
 function monitoring(req, res) {
   const params = req.params;
-  const prefixUrl = 'http://127.0.0.1:20199/sdn/server/filter/blockbyport/instance/';
+  const prefixUrl = 'http://127.0.0.1:20199/sdn/server/filter/rule/instance/';
   const url = `${prefixUrl}${params.instanceId}/flow/${params.flowId}/statistics`;
   cnsmoClient.get(url, {})
     .then((result) => {
@@ -158,7 +158,7 @@ function getBlockedTcpPortsByNode(req, res) {
 function blockByPort(req, res) {
   const bodyReq = req.body;
   const blockByPortUrl = 'http://127.0.0.1:20199/sdn/server/' +
-    'filter/blockbyport/';
+    'filter/rule/';
   cnsmoClient.put(blockByPortUrl, bodyReq)
     .then((result) => {
       console.log(result);
@@ -178,7 +178,7 @@ function deleteBlockByPort(req, res) {
   const flowId = req.params.flowId;
   const instanceId = req.params.instanceId;
   const deleteBlockByPortUrl = 'http://127.0.0.1:20199/sdn/server/' +
-    'filter/blockbyport/instance/' + instanceId + '/flow/' + flowId;
+    'filter/rule/instance/' + instanceId + '/flow/' + flowId;
   cnsmoClient.delete(deleteBlockByPortUrl)
     .then((result) => {
       console.log(result);
